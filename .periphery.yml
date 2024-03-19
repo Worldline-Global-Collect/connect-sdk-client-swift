@@ -1,0 +1,10 @@
+project: WorldlineConnectKit.xcodeproj
+schemes:
+- WorldlineConnectKit
+targets:
+- WorldlineConnectKit
+- WorldlineConnectKitTests
+clean_build: true
+retain_public: true
+build_arguments:
+- platform="iOS Simulator,name=iPhone 15,OS=17.0"
