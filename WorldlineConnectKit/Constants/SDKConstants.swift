@@ -20,6 +20,7 @@ public class SDKConstants {
     public static let kApplePayIdentifier = "302"
 
     public static let kApiVersion = "client/v1"
+    public static let kSDKIdentifier = "SwiftClientSDK/v6.0.1"
     public static let kSDKBundleIdentifier = "org.cocoapods.WorldlineConnectKit"
     public static var kSDKBundlePath =
         Bundle(identifier: SDKConstants.kSDKBundleIdentifier)?.path(

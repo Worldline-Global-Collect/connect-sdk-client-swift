@@ -50,7 +50,6 @@ public class Util {
     public init() {
         metaInfo = [
             "platformIdentifier": platformIdentifier,
-            "sdkIdentifier": "SwiftClientSDK/v6.0.0",
             "sdkCreator": "Wordline Connect",
             "screenSize": screenSize,
             "deviceBrand": "Apple",
@@ -79,6 +78,20 @@ public class Util {
         ipAddress: String?,
         addedData: [String: String]?
     ) -> String? {
+        return base64EncodedClientMetaInfo(
+            withAppIdentifier: appIdentifier,
+            ipAddress: ipAddress,
+            addedData: addedData,
+            sdkIdentifier: SDKConstants.kSDKIdentifier
+        )
+    }
+
+    internal func base64EncodedClientMetaInfo(
+        withAppIdentifier appIdentifier: String?,
+        ipAddress: String?,
+        addedData: [String: String]? = nil,
+        sdkIdentifier: String
+    ) -> String? {
         if let addedData = addedData {
             for (key, value) in addedData {
                 metaInfo!.updateValue(value, forKey: key)
@@ -94,6 +107,8 @@ public class Util {
         if let ipAddress = ipAddress, !ipAddress.isEmpty {
             metaInfo!["ipAddress"] = ipAddress
         }
+
+        metaInfo!["sdkIdentifier"] = sdkIdentifier
 
         return base64EncodedString(fromDictionary: metaInfo!)
     }

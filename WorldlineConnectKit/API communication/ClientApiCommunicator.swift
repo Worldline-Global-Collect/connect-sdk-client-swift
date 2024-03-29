@@ -31,11 +31,11 @@ internal struct ClientApiCommunicator {
     }
 
     internal var base64EncodedClientMetaInfo: String {
-        return
-            util.base64EncodedClientMetaInfo(
-                withAppIdentifier: sdkConfiguration.applicationId,
-                ipAddress: sdkConfiguration.ipAddress
-            ) ?? ""
+        return util.base64EncodedClientMetaInfo(
+            withAppIdentifier: sdkConfiguration.applicationId,
+            ipAddress: sdkConfiguration.ipAddress,
+            sdkIdentifier: sdkConfiguration.sdkIdentifier
+        ) ?? ""
     }
 
     private var loggingEnabled: Bool {
