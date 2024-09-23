@@ -30,9 +30,6 @@ xcuserdata/
 timeline.xctimeline
 playground.xcworkspace
 
-# Carthage
-Carthage/
-
 # MacOS
 .DS_Store
 

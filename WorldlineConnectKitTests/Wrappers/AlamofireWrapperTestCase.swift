@@ -9,6 +9,7 @@
 import UIKit
 import XCTest
 import OHHTTPStubs
+import OHHTTPStubsSwift
 
 @testable import WorldlineConnectKit
 

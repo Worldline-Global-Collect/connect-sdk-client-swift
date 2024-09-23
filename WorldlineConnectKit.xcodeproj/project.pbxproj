@@ -27,6 +27,10 @@
 		B4679CDD1E0C1C4400E25DFD /* JOSEEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4679CDC1E0C1C4400E25DFD /* JOSEEncryptor.swift */; };
 		B4A011DA1DF0398D00FCB738 /* AlamofireWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A011D91DF0398D00FCB738 /* AlamofireWrapper.swift */; };
 		B4D77C6B1DE72EB900F7B1C1 /* WorldlineConnectKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D77C611DE72EB900F7B1C1 /* WorldlineConnectKit.framework */; };
+		BF3ECCB52C90624400CFF0EB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BF3ECCB42C90624400CFF0EB /* Alamofire */; };
+		BF3ECCB82C90627300CFF0EB /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF3ECCB72C90627300CFF0EB /* CryptoSwift */; };
+		BF3ECCC42C90639E00CFF0EB /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF3ECCC32C90639E00CFF0EB /* OHHTTPStubsSwift */; };
+		BF44EF672C9417D00030E4DE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BFEAC9D32C940F2200FA8088 /* PrivacyInfo.xcprivacy */; };
 		BF7E31A12B875BA50045C148 /* AssetManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31A02B875BA50045C148 /* AssetManagerTestCase.swift */; };
 		BF7E31A42B875BD60045C148 /* Base64TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31A32B875BD60045C148 /* Base64TestCase.swift */; };
 		BF7E31A62B875BF60045C148 /* C2SCommunicatorConfigurationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31A52B875BF60045C148 /* C2SCommunicatorConfigurationTestCase.swift */; };
@@ -138,12 +142,6 @@
 		BF8A09D82BA204C800FD66ED /* PaymentProductField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09D52BA204C700FD66ED /* PaymentProductField.swift */; };
 		BF8A09D92BA204C800FD66ED /* PaymentProductFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09D62BA204C800FD66ED /* PaymentProductFields.swift */; };
 		BF8A09DA2BA204C800FD66ED /* FieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09D72BA204C800FD66ED /* FieldType.swift */; };
-		BF8A09EC2BA2079300FD66ED /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CD2954536C00A95841 /* Alamofire.xcframework */; };
-		BF8A09ED2BA2079300FD66ED /* Alamofire.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CD2954536C00A95841 /* Alamofire.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BF8A09EE2BA2079300FD66ED /* CryptoSwift.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CC2954536C00A95841 /* CryptoSwift.xcframework */; };
-		BF8A09EF2BA2079300FD66ED /* CryptoSwift.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CC2954536C00A95841 /* CryptoSwift.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BF8A09F02BA2079300FD66ED /* OHHTTPStubs.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */; };
-		BF8A09F12BA2079300FD66ED /* OHHTTPStubs.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFB26CB2954536C00A95841 /* OHHTTPStubs.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BF9FDEEF2B10C9E3004BBA7F /* ConnectSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEEE2B10C9E3004BBA7F /* ConnectSDK.swift */; };
 		BF9FDEF22B10CC0A004BBA7F /* ClientApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9FDEF12B10CC0A004BBA7F /* ClientApi.swift */; };
 		BFAD7D9E2BA3479600A48165 /* PaymentProduct863SpecificData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD7D9B2BA3479600A48165 /* PaymentProduct863SpecificData.swift */; };
@@ -151,6 +149,7 @@
 		BFAD7DA02BA3479600A48165 /* PaymentProduct320SpecificData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD7D9D2BA3479600A48165 /* PaymentProduct320SpecificData.swift */; };
 		BFE9120E2BA2DA0300590193 /* PrivacyPolicyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE9120D2BA2DA0300590193 /* PrivacyPolicyResponse.swift */; };
 		BFE912202BA2F27400590193 /* ValidationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE9121F2BA2F27400590193 /* ValidationErrors.swift */; };
+		BFFCDE6D2C98238700636F20 /* WorldlineConnectKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BFFCDE6C2C98238700636F20 /* WorldlineConnectKit.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,22 +168,6 @@
 			remoteInfo = WorldlineConnectKit;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		BF8A09F22BA2079300FD66ED /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				BF8A09EF2BA2079300FD66ED /* CryptoSwift.xcframework in Embed Frameworks */,
-				BF8A09ED2BA2079300FD66ED /* Alamofire.xcframework in Embed Frameworks */,
-				BF8A09F12BA2079300FD66ED /* OHHTTPStubs.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseObjectSerializable.swift; path = Protocols/ResponseObjectSerializable.swift; sourceTree = "<group>"; };
@@ -333,6 +316,8 @@
 		BFAD7D9D2BA3479600A48165 /* PaymentProduct320SpecificData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentProduct320SpecificData.swift; path = Models/PaymentProduct/SpecificData/PaymentProduct320SpecificData.swift; sourceTree = "<group>"; };
 		BFE9120D2BA2DA0300590193 /* PrivacyPolicyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivacyPolicyResponse.swift; path = Models/PrivacyPolicy/PrivacyPolicyResponse.swift; sourceTree = "<group>"; };
 		BFE9121F2BA2F27400590193 /* ValidationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationErrors.swift; path = Models/ValidationErrors/ValidationErrors.swift; sourceTree = "<group>"; };
+		BFEAC9D32C940F2200FA8088 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		BFFCDE6C2C98238700636F20 /* WorldlineConnectKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = WorldlineConnectKit.bundle; path = WorldlineConnectKit/WorldlineConnectKit.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,9 +325,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF8A09EE2BA2079300FD66ED /* CryptoSwift.xcframework in Frameworks */,
-				BF8A09EC2BA2079300FD66ED /* Alamofire.xcframework in Frameworks */,
-				BF8A09F02BA2079300FD66ED /* OHHTTPStubs.xcframework in Frameworks */,
+				BF3ECCB52C90624400CFF0EB /* Alamofire in Frameworks */,
+				BF3ECCC42C90639E00CFF0EB /* OHHTTPStubsSwift in Frameworks */,
+				BF3ECCB82C90627300CFF0EB /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,6 +426,7 @@
 		B4D77C571DE72EB900F7B1C1 = {
 			isa = PBXGroup;
 			children = (
+				BFFCDE6C2C98238700636F20 /* WorldlineConnectKit.bundle */,
 				B4D77C631DE72EB900F7B1C1 /* WorldlineConnectKit */,
 				BF7E31772B875B100045C148 /* WorldlineConnectKitTests */,
 				7BFB26DA295456DA00A95841 /* KeychainEntitlementTestApp */,
@@ -472,6 +458,7 @@
 				6D4443A21E30B1310007070E /* Extensions */,
 				B4D77DD71DE72FC600F7B1C1 /* Formatters */,
 				B4D77C651DE72EB900F7B1C1 /* Info.plist */,
+				BFEAC9D32C940F2200FA8088 /* PrivacyInfo.xcprivacy */,
 				B4D77E401DE730EC00F7B1C1 /* Models */,
 				B4D77DDD1DE72FF300F7B1C1 /* Protocols */,
 				BF9FDEF02B10CBC2004BBA7F /* SDK configuration */,
@@ -1009,13 +996,17 @@
 				B4D77C5D1DE72EB900F7B1C1 /* Frameworks */,
 				B4D77C5E1DE72EB900F7B1C1 /* Headers */,
 				B4D77C5F1DE72EB900F7B1C1 /* Resources */,
-				BF8A09F22BA2079300FD66ED /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = WorldlineConnectKit;
+			packageProductDependencies = (
+				BF3ECCB42C90624400CFF0EB /* Alamofire */,
+				BF3ECCB72C90627300CFF0EB /* CryptoSwift */,
+				BF3ECCC32C90639E00CFF0EB /* OHHTTPStubsSwift */,
+			);
 			productName = WorldlineConnectKit;
 			productReference = B4D77C611DE72EB900F7B1C1 /* WorldlineConnectKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1077,6 +1068,11 @@
 				Base,
 			);
 			mainGroup = B4D77C571DE72EB900F7B1C1;
+			packageReferences = (
+				BF3ECCB32C90624400CFF0EB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BF3ECCB62C90627300CFF0EB /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+				BF3ECCC22C90639E00CFF0EB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */,
+			);
 			productRefGroup = B4D77C621DE72EB900F7B1C1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1093,6 +1089,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFFCDE6D2C98238700636F20 /* WorldlineConnectKit.bundle in Resources */,
+				BF44EF672C9417D00030E4DE /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1466,10 +1464,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -1503,10 +1498,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -1534,10 +1526,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UTWYEN5FS2;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = WorldlineConnectKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1561,10 +1550,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = UTWYEN5FS2;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = WorldlineConnectKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1629,6 +1615,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BF3ECCB32C90624400CFF0EB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		BF3ECCB62C90627300CFF0EB /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.3;
+			};
+		};
+		BF3ECCC22C90639E00CFF0EB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AliSoftware/OHHTTPStubs";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BF3ECCB42C90624400CFF0EB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF3ECCB32C90624400CFF0EB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		BF3ECCB72C90627300CFF0EB /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF3ECCB62C90627300CFF0EB /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+		BF3ECCC32C90639E00CFF0EB /* OHHTTPStubsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BF3ECCC22C90639E00CFF0EB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */;
+			productName = OHHTTPStubsSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B4D77C581DE72EB900F7B1C1 /* Project object */;
 }

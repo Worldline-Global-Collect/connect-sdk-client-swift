@@ -301,7 +301,7 @@ public class C2SCommunicator {
             success: {() -> Void in
                 let isRecurring = context.isRecurring ? "true" : "false"
 
-                let URL = "\(self.baseURL)/\(self.configuration.customerId)/products/\(paymentProductId)/"
+                let URL = "\(self.baseURL)/\(self.configuration.customerId)/products/\(paymentProductId)"
                 var params: [String: Any] =
                 [
                     "countryCode": context.countryCode,
@@ -407,7 +407,7 @@ public class C2SCommunicator {
         let isRecurring = context.isRecurring ? "true" : "false"
         // swiftlint:disable line_length
         return
-            "\(baseURL)/\(configuration.customerId)/products/\(paymentProductId)/?countryCode=\(context.countryCode)&locale=\(context.locale!)&currencyCode=\(context.amountOfMoney.currencyCode)&amount=\(UInt(context.amountOfMoney.totalAmount))&isRecurring=\(isRecurring)"
+            "\(baseURL)/\(configuration.customerId)/products/\(paymentProductId)?countryCode=\(context.countryCode)&locale=\(context.locale!)&currencyCode=\(context.amountOfMoney.currencyCode)&amount=\(UInt(context.amountOfMoney.totalAmount))&isRecurring=\(isRecurring)"
         // swiftlint:enable line_length
     }
 
@@ -424,7 +424,7 @@ public class C2SCommunicator {
             return
         }
 
-        let URL = "\(baseURL)/\(configuration.customerId)/productgroups/\(paymentProductGroupId)/"
+        let URL = "\(baseURL)/\(configuration.customerId)/productgroups/\(paymentProductGroupId)"
         let params: [String: Any] =
             [
                 "countryCode": context.countryCode,

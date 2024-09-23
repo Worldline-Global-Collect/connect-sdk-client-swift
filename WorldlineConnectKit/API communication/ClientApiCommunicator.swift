@@ -253,7 +253,7 @@ internal struct ClientApiCommunicator {
             success: {() -> Void in
                 let isRecurring = paymentContext.isRecurring ? "true" : "false"
 
-                let URL = "\(self.baseURL)/\(customerId)/products/\(paymentProductId)/"
+                let URL = "\(self.baseURL)/\(customerId)/products/\(paymentProductId)"
                 var params: [String: Any] =
                 [
                     "countryCode": paymentContext.countryCode,
@@ -347,7 +347,7 @@ internal struct ClientApiCommunicator {
         let isRecurring = paymentContext.isRecurring ? "true" : "false"
         // swiftlint:disable line_length
         return
-            "\(baseURL)/\(customerId)/products/\(paymentProductId)/?countryCode=\(paymentContext.countryCode)&locale=\(paymentContext.locale!)&currencyCode=\(paymentContext.amountOfMoney.currencyCode)&amount=\(UInt(paymentContext.amountOfMoney.totalAmount))&isRecurring=\(isRecurring)"
+            "\(baseURL)/\(customerId)/products/\(paymentProductId)?countryCode=\(paymentContext.countryCode)&locale=\(paymentContext.locale!)&currencyCode=\(paymentContext.amountOfMoney.currencyCode)&amount=\(UInt(paymentContext.amountOfMoney.totalAmount))&isRecurring=\(isRecurring)"
         // swiftlint:enable line_length
     }
 
@@ -364,7 +364,7 @@ internal struct ClientApiCommunicator {
             return
         }
 
-        let URL = "\(baseURL)/\(customerId)/productgroups/\(paymentProductGroupId)/"
+        let URL = "\(baseURL)/\(customerId)/productgroups/\(paymentProductGroupId)"
         let params: [String: Any] =
             [
                 "countryCode": paymentContext.countryCode,
