@@ -345,6 +345,20 @@ public class Session {
         }
     }
 
+    public func thirdPartyStatus(
+        forPayment paymentId: String,
+        success: @escaping (_ thirdPartyStatusResponse: ThirdPartyStatusResponse) -> Void,
+        failure: @escaping (_ error: Error) -> Void,
+        apiFailure: @escaping (_ errorResponse: ApiErrorResponse) -> Void
+    ) {
+        communicator.thirdPartyStatus(
+            forPayment: paymentId,
+            success: success,
+            failure: failure,
+            apiFailure: apiFailure
+        )
+    }
+
     public func publicKey(
         success: @escaping (_ publicKeyResponse: PublicKeyResponse) -> Void,
         failure: @escaping (_ error: Error) -> Void

@@ -463,6 +463,8 @@ internal struct ClientApiCommunicator {
         paymentContextParameters["isRecurring"] = paymentContext.isRecurring ? "true" : "false"
         paymentContextParameters["countryCode"] = paymentContext.countryCode
 
+        paymentContextParameters["isInstallments"] = paymentContext.isInstallments
+
         var amountOfMoney: [String: Any] = [:]
         amountOfMoney["amount"] = String(paymentContext.amountOfMoney.totalAmount)
         amountOfMoney["currencyCode"] = paymentContext.amountOfMoney.currencyCode

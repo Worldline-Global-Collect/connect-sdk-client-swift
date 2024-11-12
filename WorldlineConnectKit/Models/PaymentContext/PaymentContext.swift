@@ -16,10 +16,17 @@ public class PaymentContext: Decodable {
     public var forceBasicFlow: Bool?
     public var amountOfMoney: PaymentAmountOfMoney
     public var isRecurring: Bool
+    public var isInstallments: Bool
 
-    public init(amountOfMoney: PaymentAmountOfMoney, isRecurring: Bool, countryCode: String) {
+    public init(
+        amountOfMoney: PaymentAmountOfMoney,
+        isRecurring: Bool,
+        countryCode: String,
+        isInstallments: Bool = false
+    ) {
         self.amountOfMoney = amountOfMoney
         self.isRecurring = isRecurring
+        self.isInstallments = isInstallments
         self.countryCode = countryCode
         self.countryCodeString = countryCode
 
@@ -32,7 +39,7 @@ public class PaymentContext: Decodable {
     }
 
     enum CodingKeys: CodingKey {
-        case countryCode, forceBasicFlow, amountOfMoney, isRecurring
+        case countryCode, forceBasicFlow, amountOfMoney, isRecurring, isInstallments
     }
 
     public required init(from decoder: Decoder) throws {
@@ -53,6 +60,8 @@ public class PaymentContext: Decodable {
         self.amountOfMoney = try container.decode(PaymentAmountOfMoney.self, forKey: .amountOfMoney)
 
         self.isRecurring = try container.decodeIfPresent(Bool.self, forKey: .isRecurring) ?? false
+
+        self.isInstallments = try container.decodeIfPresent(Bool.self, forKey: .isInstallments) ?? false
 
         if let languageCode = Locale.current.languageCode {
             self.locale = languageCode.appending("_")
