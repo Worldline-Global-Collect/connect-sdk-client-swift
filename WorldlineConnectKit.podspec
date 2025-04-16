@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "WorldlineConnectKit"
-  s.version       = "6.1.1"
+  s.version       = "6.1.2"
   s.summary       = "Worldline Connect Swift SDK"
   s.description   = <<-DESC
                     This native Swift SDK facilitates handling payments in your apps
