@@ -9,6 +9,7 @@
 import Foundation
 
 public class ValidatorExpirationDate: Validator, ValidationRule {
+    private let gregorianCalendar = Calendar(identifier: .gregorian)
     public var dateFormatter = DateFormatter()
     private var fullYearDateFormatter = DateFormatter()
     private var monthAndFullYearDateFormatter = DateFormatter()
@@ -16,8 +17,13 @@ public class ValidatorExpirationDate: Validator, ValidationRule {
     @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
     public override init() {
         dateFormatter.dateFormat = "MMyy"
+        dateFormatter.calendar = gregorianCalendar
+
         fullYearDateFormatter.dateFormat = "yyyy"
+        fullYearDateFormatter.calendar = gregorianCalendar
+
         monthAndFullYearDateFormatter.dateFormat = "MMyyyy"
+        monthAndFullYearDateFormatter.calendar = gregorianCalendar
 
         super.init(messageId: "expirationDate", validationType: .expirationDate)
     }
@@ -25,8 +31,13 @@ public class ValidatorExpirationDate: Validator, ValidationRule {
     // periphery:ignore:parameters decoder
     public required init(from decoder: Decoder) throws {
         dateFormatter.dateFormat = "MMyy"
+        dateFormatter.calendar = gregorianCalendar
+
         fullYearDateFormatter.dateFormat = "yyyy"
+        fullYearDateFormatter.calendar = gregorianCalendar
+
         monthAndFullYearDateFormatter.dateFormat = "MMyyyy"
+        monthAndFullYearDateFormatter.calendar = gregorianCalendar
 
         super.init(messageId: "expirationDate", validationType: .expirationDate)
     }
@@ -51,6 +62,11 @@ public class ValidatorExpirationDate: Validator, ValidationRule {
     internal override func validate(value: String, for fieldId: String?) -> Bool {
         self.clearErrors()
 
+        if value.isEmpty || value.count != 4 {
+            addExpirationDateError(fieldId: fieldId)
+            return false
+        }
+
         // Test whether the date can be parsed normally
         guard dateFormatter.date(from: value) != nil else {
             addExpirationDateError(fieldId: fieldId)
@@ -59,12 +75,15 @@ public class ValidatorExpirationDate: Validator, ValidationRule {
 
         let enteredDate = obtainEnteredDateFromValue(value: value, fieldId: fieldId)
 
-        guard let futureDate = obtainFutureDate() else {
+        let currentDateComponents = self.gregorianCalendar.dateComponents([.year, .month], from: Date())
+
+        guard let currentDate = self.gregorianCalendar.date(from: currentDateComponents),
+              let futureDate = obtainFutureDate(basedOn: currentDate) else {
             addExpirationDateError(fieldId: fieldId)
             return false
         }
 
-        if !validateDateIsBetween(now: Date(), futureDate: futureDate, dateToValidate: enteredDate) {
+        if !validateDateIsBetween(now: currentDate, futureDate: futureDate, dateToValidate: enteredDate) {
             addExpirationDateError(fieldId: fieldId)
             return false
         }
@@ -93,24 +112,20 @@ public class ValidatorExpirationDate: Validator, ValidationRule {
         return dateMonthAndFullYear
     }
 
-    private func obtainFutureDate() -> Date? {
-        let gregorianCalendar = Calendar(identifier: .gregorian)
-
+    private func obtainFutureDate(basedOn currentDate: Date) -> Date? {
         var componentsForFutureDate = DateComponents()
-        componentsForFutureDate.year = gregorianCalendar.component(.year, from: Date()) + 25
+        componentsForFutureDate.year = self.gregorianCalendar.component(.year, from: currentDate) + 25
 
-        return gregorianCalendar.date(from: componentsForFutureDate)
+        return self.gregorianCalendar.date(from: componentsForFutureDate)
     }
 
     internal func validateDateIsBetween(now: Date, futureDate: Date, dateToValidate: Date) -> Bool {
-        let gregorianCalendar = Calendar(identifier: .gregorian)
-
-        let lowerBoundComparison = gregorianCalendar.compare(now, to: dateToValidate, toGranularity: .month)
+        let lowerBoundComparison = self.gregorianCalendar.compare(now, to: dateToValidate, toGranularity: .month)
         if lowerBoundComparison == ComparisonResult.orderedDescending {
             return false
         }
 
-        let upperBoundComparison = gregorianCalendar.compare(futureDate, to: dateToValidate, toGranularity: .year)
+        let upperBoundComparison = self.gregorianCalendar.compare(futureDate, to: dateToValidate, toGranularity: .year)
         if upperBoundComparison == ComparisonResult.orderedAscending {
             return false
         }

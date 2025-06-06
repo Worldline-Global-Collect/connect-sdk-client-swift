@@ -11,6 +11,7 @@ import XCTest
 
 class ValidatorExpirationDateTestCase: XCTestCase {
 
+    let gregorianCalendar = Calendar(identifier: .gregorian)
     let validator = ValidatorExpirationDate()
     var request: PaymentRequest!
 
@@ -53,8 +54,23 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         XCTAssertEqual(validator.errors.count, 0, "Valid expiration date considered invalid")
     }
 
+    func testInvalidEmptyString() {
+        validator.validate(value: "", for: request)
+        XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered invalid")
+    }
+
+    func testInvalidLength() {
+        validator.validate(value: "13", for: request)
+        XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered invalid")
+    }
+
     func testInvalidNonNumerical() {
         validator.validate(value: "aaaa", for: request)
+        XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
+    }
+
+    func testInvalidPartiallyNonNumerical() {
+        validator.validate(value: "12ab", for: request)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
@@ -78,15 +94,22 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
+    func testInvalidWhitespace() {
+        validator.validate(value: "12 30", for: request)
+        XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
+    }
+
+    func testInvalidSpecialCharacters() {
+        validator.validate(value: "12-30", for: request)
+        XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
+    }
+
     private var now: Date {
         var components = DateComponents()
         components.year = 2018
         components.month = 9
         components.day = 23
-        components.hour = 6
-        components.minute = 33
-        components.second = 37
-        return Calendar.current.date(from: components)!
+        return self.gregorianCalendar.date(from: components)!
     }
 
     private var futureDate: Date {
@@ -94,17 +117,23 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         components.year = 2033
         components.month = 9
         components.day = 23
-        components.hour = 6
-        components.minute = 33
-        components.second = 37
-        return Calendar.current.date(from: components)!
+        return self.gregorianCalendar.date(from: components)!
     }
 
     func testValidLowerSameMonthAndYear() {
         var components = DateComponents()
         components.year = 2018
         components.month = 9
-        let testDate = Calendar.current.date(from: components)!
+        let testDate = self.gregorianCalendar.date(from: components)!
+
+        XCTAssertTrue(validator.validateDateIsBetween(now: now, futureDate: futureDate, dateToValidate: testDate))
+    }
+
+    func testValidLowerNextMonth() {
+        var components = DateComponents()
+        components.year = 2018
+        components.month = 10
+        let testDate = self.gregorianCalendar.date(from: components)!
 
         XCTAssertTrue(validator.validateDateIsBetween(now: now, futureDate: futureDate, dateToValidate: testDate))
     }
@@ -113,7 +142,7 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         var components = DateComponents()
         components.year = 2018
         components.month = 8
-        let testDate = Calendar.current.date(from: components)!
+        let testDate = self.gregorianCalendar.date(from: components)!
 
         XCTAssertFalse(validator.validateDateIsBetween(now: now, futureDate: futureDate, dateToValidate: testDate))
     }
@@ -122,7 +151,7 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         var components = DateComponents()
         components.year = 2017
         components.month = 9
-        let testDate = Calendar.current.date(from: components)!
+        let testDate = self.gregorianCalendar.date(from: components)!
 
         XCTAssertFalse(validator.validateDateIsBetween(now: now, futureDate: futureDate, dateToValidate: testDate))
     }
@@ -131,7 +160,7 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         var components = DateComponents()
         components.year = 2033
         components.month = 9
-        let testDate = Calendar.current.date(from: components)!
+        let testDate = self.gregorianCalendar.date(from: components)!
 
         XCTAssertTrue(validator.validateDateIsBetween(now: now, futureDate: futureDate, dateToValidate: testDate))
     }
@@ -140,7 +169,7 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         var components = DateComponents()
         components.year = 2033
         components.month = 11
-        let testDate = Calendar.current.date(from: components)!
+        let testDate = self.gregorianCalendar.date(from: components)!
 
         XCTAssertTrue(validator.validateDateIsBetween(now: now, futureDate: futureDate, dateToValidate: testDate))
     }
@@ -149,7 +178,7 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         var components = DateComponents()
         components.year = 2034
         components.month = 1
-        let testDate = Calendar.current.date(from: components)!
+        let testDate = self.gregorianCalendar.date(from: components)!
 
         XCTAssertFalse(validator.validateDateIsBetween(now: now, futureDate: futureDate, dateToValidate: testDate))
     }
@@ -158,8 +187,38 @@ class ValidatorExpirationDateTestCase: XCTestCase {
         var components = DateComponents()
         components.year = 2099
         components.month = 1
-        let testDate = Calendar.current.date(from: components)!
+        let testDate = self.gregorianCalendar.date(from: components)!
 
         XCTAssertFalse(validator.validateDateIsBetween(now: now, futureDate: futureDate, dateToValidate: testDate))
+    }
+
+    /*
+     To test calendars other than Gregorian,
+     you will need to change the region / calendar of the simulator on which you run the unit tests.
+     */
+    func testValidationAlternativeCalendars() {
+        // Valid expiration date
+        var isValid = validator.validate(value: "1226", for: nil)
+        XCTAssertTrue(isValid)
+        XCTAssertTrue(
+            validator.errors.count == 0,
+            "Valid expiration date should pass validation with alternative calendar"
+        )
+
+        // Invalid expiration date - past
+        isValid = validator.validate(value: "0324", for: nil)
+        XCTAssertFalse(isValid)
+        XCTAssertTrue(
+            validator.errors.count > 0,
+            "Expired date should fail validation with alternative calendar"
+        )
+
+        // Invalid expiration date - future
+        isValid = validator.validate(value: "1290", for: nil)
+        XCTAssertFalse(isValid)
+        XCTAssertTrue(
+            validator.errors.count > 0,
+            "Date beyond limit should fail validation with alternative calendar"
+        )
     }
 }
