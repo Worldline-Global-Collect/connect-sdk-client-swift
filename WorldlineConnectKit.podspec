@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name          = "WorldlineConnectKit"
-  s.version       = "6.1.3"
+  s.version       = "6.1.4"
   s.summary       = "Worldline Connect Swift SDK"
   s.description   = <<-DESC
                     This native Swift SDK facilitates handling payments in your apps
@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
   s.swift_version = "5"
   
   s.dependency 'Alamofire', '~> 5.4'
-  s.dependency 'CryptoSwift', '1.4.0'
+  s.dependency 'CryptoSwift', '1.8.4'
 end

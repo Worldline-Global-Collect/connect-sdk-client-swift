@@ -1629,8 +1629,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.8.4;
+				kind = exactVersion;
+				version = 1.8.4;
 			};
 		};
 		BF3ECCC22C90639E00CFF0EB /* XCRemoteSwiftPackageReference "OHHTTPStubs" */ = {
