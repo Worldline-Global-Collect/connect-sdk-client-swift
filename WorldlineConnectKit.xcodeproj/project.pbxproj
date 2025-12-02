@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6D0126CB1E0422C400FCFEC7 /* ResponseObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */; };
 		6D4443A41E30B1540007070E /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4443A31E30B1540007070E /* String+Extensions.swift */; };
 		6D4E7AB91DF57E2900BAE336 /* PaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7AB81DF57E2900BAE336 /* PaymentRequest.swift */; };
 		6D4E7ABB1DF58F6700BAE336 /* PreparedPaymentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4E7ABA1DF58F6700BAE336 /* PreparedPaymentRequest.swift */; };
@@ -21,7 +20,6 @@
 		73AABACD1F1F804200B76782 /* ThirdPartyStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABACB1F1F804200B76782 /* ThirdPartyStatusResponse.swift */; };
 		7BFB26DC295456DA00A95841 /* KeychainEntitlementTestAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BFB26DB295456DA00A95841 /* KeychainEntitlementTestAppApp.swift */; };
 		B43C1F521DEC334B00E210DF /* StringFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43C1F511DEC334B00E210DF /* StringFormatter.swift */; };
-		B4548F941E08379000603B69 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4548F931E08379000603B69 /* Session.swift */; };
 		B461902B1DF5998100A55FB1 /* BasicPaymentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46190291DF5998100A55FB1 /* BasicPaymentItem.swift */; };
 		B461902C1DF5998100A55FB1 /* PaymentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B461902A1DF5998100A55FB1 /* PaymentItem.swift */; };
 		B4679CDD1E0C1C4400E25DFD /* JOSEEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4679CDC1E0C1C4400E25DFD /* JOSEEncryptor.swift */; };
@@ -31,10 +29,7 @@
 		BF3ECCB82C90627300CFF0EB /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF3ECCB72C90627300CFF0EB /* CryptoSwift */; };
 		BF3ECCC42C90639E00CFF0EB /* OHHTTPStubsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BF3ECCC32C90639E00CFF0EB /* OHHTTPStubsSwift */; };
 		BF44EF672C9417D00030E4DE /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BFEAC9D32C940F2200FA8088 /* PrivacyInfo.xcprivacy */; };
-		BF7E31A12B875BA50045C148 /* AssetManagerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31A02B875BA50045C148 /* AssetManagerTestCase.swift */; };
 		BF7E31A42B875BD60045C148 /* Base64TestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31A32B875BD60045C148 /* Base64TestCase.swift */; };
-		BF7E31A62B875BF60045C148 /* C2SCommunicatorConfigurationTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31A52B875BF60045C148 /* C2SCommunicatorConfigurationTestCase.swift */; };
-		BF7E31A82B875C0D0045C148 /* C2SCommunicatorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31A72B875C0D0045C148 /* C2SCommunicatorTestCase.swift */; };
 		BF7E31AA2B875C460045C148 /* certificate.pfx in Resources */ = {isa = PBXBuildFile; fileRef = BF7E31A92B875C460045C148 /* certificate.pfx */; };
 		BF7E31AD2B875C6E0045C148 /* ClientApiTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31AC2B875C6E0045C148 /* ClientApiTestCase.swift */; };
 		BF7E31AF2B875C8C0045C148 /* ConnectSDKTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31AE2B875C8C0045C148 /* ConnectSDKTestCase.swift */; };
@@ -47,12 +42,7 @@
 		BF7E31C42B875DDF0045C148 /* paymentProducts.json in Resources */ = {isa = PBXBuildFile; fileRef = BF7E31C32B875DDF0045C148 /* paymentProducts.json */; };
 		BF7E31C72B875E120045C148 /* AlamofireWrapperTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31C62B875E120045C148 /* AlamofireWrapperTestCase.swift */; };
 		BF7E31C92B875E270045C148 /* UtilTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31C82B875E270045C148 /* UtilTestCase.swift */; };
-		BF7E31CB2B875E330045C148 /* SessionTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31CA2B875E330045C148 /* SessionTestCase.swift */; };
-		BF7E31CE2B875E610045C148 /* StubBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31CD2B875E610045C148 /* StubBundle.swift */; };
 		BF7E31D02B875E6C0045C148 /* StubClientApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31CF2B875E6C0045C148 /* StubClientApi.swift */; };
-		BF7E31D22B875E760045C148 /* StubFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31D12B875E760045C148 /* StubFileManager.swift */; };
-		BF7E31D42B875E7D0045C148 /* StubSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31D32B875E7D0045C148 /* StubSession.swift */; };
-		BF7E31D62B875E820045C148 /* StubUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31D52B875E820045C148 /* StubUtil.swift */; };
 		BF7E31D92B875EC40045C148 /* AccountOnFileAttributesTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31D82B875EC40045C148 /* AccountOnFileAttributesTestCase.swift */; };
 		BF7E31DC2B875EE40045C148 /* AccountsOnFileTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31DB2B875EE40045C148 /* AccountsOnFileTestCase.swift */; };
 		BF7E31DF2B875F0D0045C148 /* ValidatorEmailAddressTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E31DE2B875F0D0045C148 /* ValidatorEmailAddressTestCase.swift */; };
@@ -77,16 +67,11 @@
 		BF7E320B2B8761450045C148 /* IINDetailsResponseTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E320A2B8761450045C148 /* IINDetailsResponseTestCase.swift */; };
 		BF7E320E2B8761780045C148 /* PaymentAmountOfMoneyTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E320D2B8761780045C148 /* PaymentAmountOfMoneyTestCase.swift */; };
 		BF7E32112B8761910045C148 /* PaymentItemsTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E32102B8761910045C148 /* PaymentItemsTestCase.swift */; };
-		BF8A09382BA1F5CA00FD66ED /* AssetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09342BA1F5C900FD66ED /* AssetManager.swift */; };
 		BF8A09392BA1F5CA00FD66ED /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09352BA1F5CA00FD66ED /* Macros.swift */; };
-		BF8A093A2BA1F5CA00FD66ED /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09362BA1F5CA00FD66ED /* FileManager.swift */; };
 		BF8A093B2BA1F5CA00FD66ED /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09372BA1F5CA00FD66ED /* Util.swift */; };
 		BF8A093F2BA1F61500FD66ED /* ClientApiCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A093C2BA1F61500FD66ED /* ClientApiCommunicator.swift */; };
-		BF8A09402BA1F61500FD66ED /* C2SCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A093D2BA1F61500FD66ED /* C2SCommunicator.swift */; };
-		BF8A09412BA1F61500FD66ED /* C2SCommunicatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A093E2BA1F61500FD66ED /* C2SCommunicatorConfiguration.swift */; };
 		BF8A09442BA1F65A00FD66ED /* ApiErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09422BA1F65A00FD66ED /* ApiErrorResponse.swift */; };
 		BF8A09452BA1F65A00FD66ED /* ApiErrorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09432BA1F65A00FD66ED /* ApiErrorItem.swift */; };
-		BF8A09482BA1F6CB00FD66ED /* SessionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09462BA1F6CB00FD66ED /* SessionError.swift */; };
 		BF8A09492BA1F6CB00FD66ED /* ConnectSDKError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A09472BA1F6CB00FD66ED /* ConnectSDKError.swift */; };
 		BF8A094B2BA1F6E400FD66ED /* Base64+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A094A2BA1F6E400FD66ED /* Base64+Extensions.swift */; };
 		BF8A094F2BA1F74400FD66ED /* PaymentConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF8A094C2BA1F74400FD66ED /* PaymentConfiguration.swift */; };
@@ -149,7 +134,6 @@
 		BFAD7DA02BA3479600A48165 /* PaymentProduct320SpecificData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD7D9D2BA3479600A48165 /* PaymentProduct320SpecificData.swift */; };
 		BFE9120E2BA2DA0300590193 /* PrivacyPolicyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE9120D2BA2DA0300590193 /* PrivacyPolicyResponse.swift */; };
 		BFE912202BA2F27400590193 /* ValidationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE9121F2BA2F27400590193 /* ValidationErrors.swift */; };
-		BFFCDE6D2C98238700636F20 /* WorldlineConnectKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BFFCDE6C2C98238700636F20 /* WorldlineConnectKit.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,7 +154,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResponseObjectSerializable.swift; path = Protocols/ResponseObjectSerializable.swift; sourceTree = "<group>"; };
 		6D4443A31E30B1540007070E /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Extensions.swift"; path = "Extensions/String+Extensions.swift"; sourceTree = "<group>"; };
 		6D4E7AB81DF57E2900BAE336 /* PaymentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentRequest.swift; path = Models/PaymentRequest/PaymentRequest.swift; sourceTree = "<group>"; };
 		6D4E7ABA1DF58F6700BAE336 /* PreparedPaymentRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreparedPaymentRequest.swift; path = Models/PaymentRequest/PreparedPaymentRequest.swift; sourceTree = "<group>"; };
@@ -189,7 +172,6 @@
 		7BFB26DB295456DA00A95841 /* KeychainEntitlementTestAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainEntitlementTestAppApp.swift; sourceTree = "<group>"; };
 		B43C1F511DEC334B00E210DF /* StringFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringFormatter.swift; path = Formatters/StringFormatter.swift; sourceTree = "<group>"; };
 		B43C1F531DEC35B200E210DF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		B4548F931E08379000603B69 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		B46190291DF5998100A55FB1 /* BasicPaymentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicPaymentItem.swift; path = Protocols/BasicPaymentItem.swift; sourceTree = "<group>"; };
 		B461902A1DF5998100A55FB1 /* PaymentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentItem.swift; path = Protocols/PaymentItem.swift; sourceTree = "<group>"; };
 		B4679CDC1E0C1C4400E25DFD /* JOSEEncryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JOSEEncryptor.swift; path = Cryptography/JOSEEncryptor.swift; sourceTree = "<group>"; };
@@ -197,10 +179,7 @@
 		B4D77C611DE72EB900F7B1C1 /* WorldlineConnectKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WorldlineConnectKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4D77C651DE72EB900F7B1C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4D77C6A1DE72EB900F7B1C1 /* WorldlineConnectKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WorldlineConnectKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF7E31A02B875BA50045C148 /* AssetManagerTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetManagerTestCase.swift; sourceTree = "<group>"; };
 		BF7E31A32B875BD60045C148 /* Base64TestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base64TestCase.swift; sourceTree = "<group>"; };
-		BF7E31A52B875BF60045C148 /* C2SCommunicatorConfigurationTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C2SCommunicatorConfigurationTestCase.swift; sourceTree = "<group>"; };
-		BF7E31A72B875C0D0045C148 /* C2SCommunicatorTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C2SCommunicatorTestCase.swift; sourceTree = "<group>"; };
 		BF7E31A92B875C460045C148 /* certificate.pfx */ = {isa = PBXFileReference; lastKnownFileType = file; path = certificate.pfx; sourceTree = "<group>"; };
 		BF7E31AC2B875C6E0045C148 /* ClientApiTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientApiTestCase.swift; sourceTree = "<group>"; };
 		BF7E31AE2B875C8C0045C148 /* ConnectSDKTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectSDKTestCase.swift; sourceTree = "<group>"; };
@@ -214,12 +193,7 @@
 		BF7E31C32B875DDF0045C148 /* paymentProducts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = paymentProducts.json; sourceTree = "<group>"; };
 		BF7E31C62B875E120045C148 /* AlamofireWrapperTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireWrapperTestCase.swift; sourceTree = "<group>"; };
 		BF7E31C82B875E270045C148 /* UtilTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilTestCase.swift; sourceTree = "<group>"; };
-		BF7E31CA2B875E330045C148 /* SessionTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionTestCase.swift; sourceTree = "<group>"; };
-		BF7E31CD2B875E610045C148 /* StubBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubBundle.swift; sourceTree = "<group>"; };
 		BF7E31CF2B875E6C0045C148 /* StubClientApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubClientApi.swift; sourceTree = "<group>"; };
-		BF7E31D12B875E760045C148 /* StubFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubFileManager.swift; sourceTree = "<group>"; };
-		BF7E31D32B875E7D0045C148 /* StubSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubSession.swift; sourceTree = "<group>"; };
-		BF7E31D52B875E820045C148 /* StubUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubUtil.swift; sourceTree = "<group>"; };
 		BF7E31D82B875EC40045C148 /* AccountOnFileAttributesTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountOnFileAttributesTestCase.swift; sourceTree = "<group>"; };
 		BF7E31DB2B875EE40045C148 /* AccountsOnFileTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsOnFileTestCase.swift; sourceTree = "<group>"; };
 		BF7E31DE2B875F0D0045C148 /* ValidatorEmailAddressTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorEmailAddressTestCase.swift; sourceTree = "<group>"; };
@@ -244,16 +218,11 @@
 		BF7E320A2B8761450045C148 /* IINDetailsResponseTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IINDetailsResponseTestCase.swift; sourceTree = "<group>"; };
 		BF7E320D2B8761780045C148 /* PaymentAmountOfMoneyTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAmountOfMoneyTestCase.swift; sourceTree = "<group>"; };
 		BF7E32102B8761910045C148 /* PaymentItemsTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentItemsTestCase.swift; sourceTree = "<group>"; };
-		BF8A09342BA1F5C900FD66ED /* AssetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssetManager.swift; path = Utils/AssetManager.swift; sourceTree = "<group>"; };
 		BF8A09352BA1F5CA00FD66ED /* Macros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Macros.swift; path = Utils/Macros.swift; sourceTree = "<group>"; };
-		BF8A09362BA1F5CA00FD66ED /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileManager.swift; path = Utils/FileManager.swift; sourceTree = "<group>"; };
 		BF8A09372BA1F5CA00FD66ED /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Util.swift; path = Utils/Util.swift; sourceTree = "<group>"; };
 		BF8A093C2BA1F61500FD66ED /* ClientApiCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClientApiCommunicator.swift; path = "API communication/ClientApiCommunicator.swift"; sourceTree = "<group>"; };
-		BF8A093D2BA1F61500FD66ED /* C2SCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = C2SCommunicator.swift; path = "API communication/C2SCommunicator.swift"; sourceTree = "<group>"; };
-		BF8A093E2BA1F61500FD66ED /* C2SCommunicatorConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = C2SCommunicatorConfiguration.swift; path = "API communication/C2SCommunicatorConfiguration.swift"; sourceTree = "<group>"; };
 		BF8A09422BA1F65A00FD66ED /* ApiErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiErrorResponse.swift; path = "API errors/ApiErrorResponse.swift"; sourceTree = "<group>"; };
 		BF8A09432BA1F65A00FD66ED /* ApiErrorItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApiErrorItem.swift; path = "API errors/ApiErrorItem.swift"; sourceTree = "<group>"; };
-		BF8A09462BA1F6CB00FD66ED /* SessionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SessionError.swift; path = Errors/SessionError.swift; sourceTree = "<group>"; };
 		BF8A09472BA1F6CB00FD66ED /* ConnectSDKError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectSDKError.swift; path = Errors/ConnectSDKError.swift; sourceTree = "<group>"; };
 		BF8A094A2BA1F6E400FD66ED /* Base64+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Base64+Extensions.swift"; path = "Extensions/Base64+Extensions.swift"; sourceTree = "<group>"; };
 		BF8A094C2BA1F74400FD66ED /* PaymentConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentConfiguration.swift; path = "SDK configuration/PaymentConfiguration.swift"; sourceTree = "<group>"; };
@@ -317,7 +286,6 @@
 		BFE9120D2BA2DA0300590193 /* PrivacyPolicyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PrivacyPolicyResponse.swift; path = Models/PrivacyPolicy/PrivacyPolicyResponse.swift; sourceTree = "<group>"; };
 		BFE9121F2BA2F27400590193 /* ValidationErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ValidationErrors.swift; path = Models/ValidationErrors/ValidationErrors.swift; sourceTree = "<group>"; };
 		BFEAC9D32C940F2200FA8088 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		BFFCDE6C2C98238700636F20 /* WorldlineConnectKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = WorldlineConnectKit.bundle; path = WorldlineConnectKit/WorldlineConnectKit.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,8 +346,6 @@
 		1CD959191E8D1F7C007103CB /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				BF8A09342BA1F5C900FD66ED /* AssetManager.swift */,
-				BF8A09362BA1F5CA00FD66ED /* FileManager.swift */,
 				BF8A09352BA1F5CA00FD66ED /* Macros.swift */,
 				BF8A09372BA1F5CA00FD66ED /* Util.swift */,
 			);
@@ -426,7 +392,6 @@
 		B4D77C571DE72EB900F7B1C1 = {
 			isa = PBXGroup;
 			children = (
-				BFFCDE6C2C98238700636F20 /* WorldlineConnectKit.bundle */,
 				B4D77C631DE72EB900F7B1C1 /* WorldlineConnectKit */,
 				BF7E31772B875B100045C148 /* WorldlineConnectKitTests */,
 				7BFB26DA295456DA00A95841 /* KeychainEntitlementTestApp */,
@@ -462,7 +427,6 @@
 				B4D77E401DE730EC00F7B1C1 /* Models */,
 				B4D77DDD1DE72FF300F7B1C1 /* Protocols */,
 				BF9FDEF02B10CBC2004BBA7F /* SDK configuration */,
-				B4548F931E08379000603B69 /* Session.swift */,
 				1CD959191E8D1F7C007103CB /* Utils */,
 				B4D77DD31DE72F9E00F7B1C1 /* Wrappers */,
 			);
@@ -507,7 +471,6 @@
 			children = (
 				B46190291DF5998100A55FB1 /* BasicPaymentItem.swift */,
 				B461902A1DF5998100A55FB1 /* PaymentItem.swift */,
-				6D0126CA1E0422C400FCFEC7 /* ResponseObjectSerializable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -595,7 +558,6 @@
 		BF7E31772B875B100045C148 /* WorldlineConnectKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				BFAD7D942BA31BC500A48165 /* API communication */,
 				BF7E31A22B875BC30045C148 /* Base64 */,
 				BF7E31AC2B875C6E0045C148 /* ClientApiTestCase.swift */,
 				BF7E31AE2B875C8C0045C148 /* ConnectSDKTestCase.swift */,
@@ -605,7 +567,6 @@
 				BF7E31D72B875EB40045C148 /* Models */,
 				BF7E31C52B875DEC0045C148 /* Wrappers */,
 				BF7E31BA2B875D6C0045C148 /* Resources */,
-				BF7E31CA2B875E330045C148 /* SessionTestCase.swift */,
 				BF7E31CC2B875E520045C148 /* Stubs */,
 				BFAD7D952BA31BE700A48165 /* Utils */,
 			);
@@ -660,11 +621,7 @@
 		BF7E31CC2B875E520045C148 /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
-				BF7E31CD2B875E610045C148 /* StubBundle.swift */,
 				BF7E31CF2B875E6C0045C148 /* StubClientApi.swift */,
-				BF7E31D12B875E760045C148 /* StubFileManager.swift */,
-				BF7E31D32B875E7D0045C148 /* StubSession.swift */,
-				BF7E31D52B875E820045C148 /* StubUtil.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -766,7 +723,6 @@
 			isa = PBXGroup;
 			children = (
 				BF8A09472BA1F6CB00FD66ED /* ConnectSDKError.swift */,
-				BF8A09462BA1F6CB00FD66ED /* SessionError.swift */,
 			);
 			name = Errors;
 			sourceTree = "<group>";
@@ -885,27 +841,15 @@
 		BF9FDEF92B10D9B7004BBA7F /* API communication */ = {
 			isa = PBXGroup;
 			children = (
-				BF8A093D2BA1F61500FD66ED /* C2SCommunicator.swift */,
-				BF8A093E2BA1F61500FD66ED /* C2SCommunicatorConfiguration.swift */,
 				BF8A093C2BA1F61500FD66ED /* ClientApiCommunicator.swift */,
 			);
 			name = "API communication";
-			sourceTree = "<group>";
-		};
-		BFAD7D942BA31BC500A48165 /* API communication */ = {
-			isa = PBXGroup;
-			children = (
-				BF7E31A52B875BF60045C148 /* C2SCommunicatorConfigurationTestCase.swift */,
-				BF7E31A72B875C0D0045C148 /* C2SCommunicatorTestCase.swift */,
-			);
-			path = "API communication";
 			sourceTree = "<group>";
 		};
 		BFAD7D952BA31BE700A48165 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				BF7E31C82B875E270045C148 /* UtilTestCase.swift */,
-				BF7E31A02B875BA50045C148 /* AssetManagerTestCase.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1089,7 +1033,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFFCDE6D2C98238700636F20 /* WorldlineConnectKit.bundle in Resources */,
 				BF44EF672C9417D00030E4DE /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1123,7 +1066,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BF8A09B62BA1FA8900FD66ED /* ValidationType.swift in Sources */,
-				BF8A093A2BA1F5CA00FD66ED /* FileManager.swift in Sources */,
 				BF8A09DA2BA204C800FD66ED /* FieldType.swift in Sources */,
 				BF8A09512BA1F74400FD66ED /* ConnectSDKConfiguration.swift in Sources */,
 				BF8A09D92BA204C800FD66ED /* PaymentProductFields.swift in Sources */,
@@ -1133,12 +1075,10 @@
 				BF8A09B22BA1FA8900FD66ED /* ValidatorBoletoBancarioRequiredness.swift in Sources */,
 				BF8A09CC2BA204B600FD66ED /* FormElement.swift in Sources */,
 				BF8A09612BA1F81100FD66ED /* LabelTemplate.swift in Sources */,
-				BF8A09402BA1F61500FD66ED /* C2SCommunicator.swift in Sources */,
 				BF8A09D02BA204B600FD66ED /* ValueMappingItem.swift in Sources */,
 				BF8A09BB2BA1FA8900FD66ED /* Validator.swift in Sources */,
 				BF8A095A2BA1F80800FD66ED /* AccountOnFileAttribute.swift in Sources */,
 				BF8A096D2BA1F8BB00FD66ED /* PaymentItems.swift in Sources */,
-				BF8A09412BA1F61500FD66ED /* C2SCommunicatorConfiguration.swift in Sources */,
 				BF8A09392BA1F5CA00FD66ED /* Macros.swift in Sources */,
 				6DED71EC1DEC46090023EFA2 /* SDKConstants.swift in Sources */,
 				BF8A093F2BA1F61500FD66ED /* ClientApiCommunicator.swift in Sources */,
@@ -1148,14 +1088,12 @@
 				BFAD7D9E2BA3479600A48165 /* PaymentProduct863SpecificData.swift in Sources */,
 				B43C1F521DEC334B00E210DF /* StringFormatter.swift in Sources */,
 				BF8A09B42BA1FA8900FD66ED /* ValidatorResidentIdNumber.swift in Sources */,
-				BF8A09382BA1F5CA00FD66ED /* AssetManager.swift in Sources */,
 				BF8A095B2BA1F80800FD66ED /* AccountOnFileAttributeStatus.swift in Sources */,
 				BF8A09592BA1F80800FD66ED /* AccountOnFileAttributes.swift in Sources */,
 				BF8A09492BA1F6CB00FD66ED /* ConnectSDKError.swift in Sources */,
 				B461902B1DF5998100A55FB1 /* BasicPaymentItem.swift in Sources */,
 				B461902C1DF5998100A55FB1 /* PaymentItem.swift in Sources */,
 				BF8A09CB2BA204B600FD66ED /* PaymentProductFieldDisplayHints.swift in Sources */,
-				BF8A09482BA1F6CB00FD66ED /* SessionError.swift in Sources */,
 				BF8A09AF2BA1FA8900FD66ED /* ValidatorRange.swift in Sources */,
 				BFE912202BA2F27400590193 /* ValidationErrors.swift in Sources */,
 				BF8A09D12BA204B600FD66ED /* FormElementType.swift in Sources */,
@@ -1197,7 +1135,6 @@
 				BF8A09B32BA1FA8900FD66ED /* ValidatorExpirationDate.swift in Sources */,
 				73819ECD1DF95E3500B6FC0F /* Encryptor.swift in Sources */,
 				BF8A09C22BA2049400FD66ED /* PublicKeyResponse.swift in Sources */,
-				6D0126CB1E0422C400FCFEC7 /* ResponseObjectSerializable.swift in Sources */,
 				BF8A09CD2BA204B600FD66ED /* PreferredInputType.swift in Sources */,
 				BF8A09552BA1F7FC00FD66ED /* AccountOnFile.swift in Sources */,
 				73AABACC1F1F804200B76782 /* ThirdPartyStatus.swift in Sources */,
@@ -1209,7 +1146,6 @@
 				BF8A095F2BA1F81100FD66ED /* AccountOnFileDisplayHints.swift in Sources */,
 				6D4443A41E30B1540007070E /* String+Extensions.swift in Sources */,
 				6D7822041DF0228F00B5A9AB /* DirectoryEntry.swift in Sources */,
-				B4548F941E08379000603B69 /* Session.swift in Sources */,
 				BF8A09BA2BA1FA8900FD66ED /* ValidationRule.swift in Sources */,
 				BF8A09692BA1F88600FD66ED /* PaymentAmountOfMoney.swift in Sources */,
 			);
@@ -1227,26 +1163,20 @@
 				BF7E31FA2B8760230045C148 /* BasicPaymentProductGroupTestCase.swift in Sources */,
 				BF7E31E12B875F230045C148 /* ValidatorExpirationDateTestCase.swift in Sources */,
 				BF7E31E52B875F410045C148 /* ValidatorLengthTestCase.swift in Sources */,
-				BF7E31D42B875E7D0045C148 /* StubSession.swift in Sources */,
 				BF7E31E92B875F650045C148 /* ValidatorRangeTestCase.swift in Sources */,
 				BF7E31F82B8760110045C148 /* BasicPaymentProductGroupsTestCase.swift in Sources */,
 				BF7E31FC2B87606F0045C148 /* PaymentProductFieldsTestCase.swift in Sources */,
 				BF7E31AD2B875C6E0045C148 /* ClientApiTestCase.swift in Sources */,
-				BF7E31D62B875E820045C148 /* StubUtil.swift in Sources */,
 				BF7E31DF2B875F0D0045C148 /* ValidatorEmailAddressTestCase.swift in Sources */,
 				BF7E31ED2B875F880045C148 /* ValidatorResidentIdNumberTestCase.swift in Sources */,
-				BF7E31A82B875C0D0045C148 /* C2SCommunicatorTestCase.swift in Sources */,
 				BF7E31C92B875E270045C148 /* UtilTestCase.swift in Sources */,
 				BF7E320B2B8761450045C148 /* IINDetailsResponseTestCase.swift in Sources */,
 				BF7E32112B8761910045C148 /* PaymentItemsTestCase.swift in Sources */,
 				BF7E31EF2B875F9E0045C148 /* ValueMappingItemTestCase.swift in Sources */,
-				BF7E31CB2B875E330045C148 /* SessionTestCase.swift in Sources */,
 				BF7E31AF2B875C8C0045C148 /* ConnectSDKTestCase.swift in Sources */,
 				BF7E31E72B875F540045C148 /* ValidatorLuhnTestCase.swift in Sources */,
 				BF7E32042B8760EA0045C148 /* PaymentProductTestCase.swift in Sources */,
 				BF7E320E2B8761780045C148 /* PaymentAmountOfMoneyTestCase.swift in Sources */,
-				BF7E31A62B875BF60045C148 /* C2SCommunicatorConfigurationTestCase.swift in Sources */,
-				BF7E31D22B875E760045C148 /* StubFileManager.swift in Sources */,
 				BF7E32002B8760950045C148 /* PaymentProductGroupTestCase.swift in Sources */,
 				BF7E31D92B875EC40045C148 /* AccountOnFileAttributesTestCase.swift in Sources */,
 				BF7E31D02B875E6C0045C148 /* StubClientApi.swift in Sources */,
@@ -1256,9 +1186,7 @@
 				BF7E31E32B875F350045C148 /* ValidatorFixedListTestCase.swift in Sources */,
 				BF7E31EB2B875F760045C148 /* ValidatorRegularExpressionTestCase.swift in Sources */,
 				BF7E31DC2B875EE40045C148 /* AccountsOnFileTestCase.swift in Sources */,
-				BF7E31A12B875BA50045C148 /* AssetManagerTestCase.swift in Sources */,
 				BF7E31B52B875CE10045C148 /* StringFormatterTestCase.swift in Sources */,
-				BF7E31CE2B875E610045C148 /* StubBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

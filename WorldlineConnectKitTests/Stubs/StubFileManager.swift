@@ -9,6 +9,7 @@
 import UIKit
 @testable import WorldlineConnectKit
 
+// periphery:ignore
 class StubFileManager: WorldlineConnectKit.FileManager {
     override func dict(atPath path: String) -> NSDictionary? {
         switch path {

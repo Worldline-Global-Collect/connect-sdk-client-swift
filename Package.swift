@@ -18,7 +18,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.9.1"),
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift", from: "1.8.3"),
+        .package(url: "https://github.com/krzyzanowskim/CryptoSwift", .exact("1.8.4")),
         .package(url: "https://github.com/AliSoftware/OHHTTPStubs", from: "9.1.0")
     ],
     targets: [

@@ -12,7 +12,6 @@ import XCTest
 class PaymentProductFieldTestCase: XCTestCase {
 
     var field: PaymentProductField!
-    var request: PaymentRequest!
 
     override func setUp() {
         super.setUp()
@@ -54,47 +53,30 @@ class PaymentProductFieldTestCase: XCTestCase {
             return
         }
         self.field = field
-
-        let paymentProductJSON = Data("""
-        {
-            "fields": [],
-            "id": 1,
-            "paymentMethod": "card",
-            "displayHints": {
-                "displayOrder": 20,
-                "label": "Visa",
-                "logo": "/this/is_a_test.png"
-            },
-            "usesRedirectionTo3rdParty": false
-        }
-        """.utf8)
-
-        guard let paymentProduct = try? JSONDecoder().decode(PaymentProduct.self, from: paymentProductJSON) else {
-            XCTFail("Not a valid PaymentProduct")
-            return
-        }
-
-        request = PaymentRequest(paymentProduct: paymentProduct)
     }
 
     func testValidateValueCorrect() {
-        field.validateValue(value: "0055", for: request)
-        XCTAssertEqual(field.errors.count, 0, "Unexpected errors after validation")
+        let errors = field.validateValue(value: "0055")
+        XCTAssertEqual(errors.count, 0, "Unexpected errors after validation")
+        XCTAssertEqual(field.errorMessageIds.count, 0, "Unexpected errors after validation")
     }
 
     func testValidateValueIncorrect() {
-        field.validateValue(value: "0", for: request)
-        XCTAssertEqual(field.errors.count, 2, "Unexpected number of errors after validation")
+        let errors = field.validateValue(value: "0")
+        XCTAssertEqual(errors.count, 2, "Unexpected number of errors after validation")
+        XCTAssertEqual(field.errorMessageIds.count, 2, "Unexpected number of errors after validation")
     }
 
     func testTypes() {
         field.dataRestrictions.isRequired = true
-        field.validateValue(value: "0055", for: request)
-        XCTAssertEqual(field.errors.count, 0, "Unexpected errors after validation")
+        var errors = field.validateValue(value: "0055")
+        XCTAssertEqual(errors.count, 0, "Unexpected errors after validation")
+        XCTAssertEqual(field.errorMessageIds.count, 0, "Unexpected errors after validation")
 
         field.type = .numericString
-        field.validateValue(value: "a", for: request)
-        XCTAssertEqual(field.errors.count, 2, "Unexpected number of errors after validation")
+        errors = field.validateValue(value: "a")
+        XCTAssertEqual(errors.count, 2, "Unexpected number of errors after validation")
+        XCTAssertEqual(field.errorMessageIds.count, 2, "Unexpected number of errors after validation")
     }
 
     func testPaymentProductField() {

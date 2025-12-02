@@ -8,22 +8,10 @@
 
 import Foundation
 
-public class DirectoryEntries: ResponseObjectSerializable, Codable {
+public class DirectoryEntries: Codable {
     public var directoryEntries: [DirectoryEntry] = []
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public init() {}
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init(json: [String: Any]) {
-        if let entries = json["entries"] as? [[String: Any]] {
-            for inputEntry in entries {
-                if let entry = DirectoryEntry(json: inputEntry) {
-                    directoryEntries.append(entry)
-                }
-            }
-        }
-    }
+    internal init() {}
 
     private enum CodingKeys: String, CodingKey {
         case entries

@@ -8,36 +8,11 @@
 
 import Foundation
 
-public class DirectoryEntry: ResponseObjectSerializable, Codable {
+public class DirectoryEntry: Codable {
     public var issuerIdentifier: String
     public var issuerList: String
     public var issuerName: String
     public var countryNames: [String] = []
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public required init?(json: [String: Any]) {
-        if let input = json["issuerId"] as? String {
-            issuerIdentifier = input
-        } else {
-            return nil
-        }
-        if let input = json["issuerList"] as? String {
-            issuerList = input
-        } else {
-            return nil
-        }
-        if let input = json["issuerName"] as? String {
-            issuerName = input
-        } else {
-            return nil
-        }
-
-        if let input = json["countryNames"] as? [String] {
-            for countryInput in input {
-                countryNames.append(countryInput)
-            }
-        }
-    }
 
     private enum CodingKeys: String, CodingKey {
         case issuerId, issuerList, issuerName, countryNames

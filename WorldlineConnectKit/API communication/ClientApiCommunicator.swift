@@ -76,7 +76,7 @@ internal struct ClientApiCommunicator {
             withParameters: [:],
             success: { (responseObject: ThirdPartyStatusResponse?) in
                 guard let thirdPartyStatusResponse = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -112,7 +112,7 @@ internal struct ClientApiCommunicator {
             withParameters: params,
             success: { (responseObject: BasicPaymentProducts?) in
                 guard let paymentProductsResponse = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -174,7 +174,7 @@ internal struct ClientApiCommunicator {
     ) {
         let isRecurring = paymentContext.isRecurring ? "true" : "false"
         guard let locale = paymentContext.locale else {
-            failure(SessionError.RuntimeError("Locale was nil."))
+            failure(ConnectSDKError.localeWasNil)
             return
         }
         let URL = "\(self.baseURL)/\(customerId)/products/\(paymentProductId)/networks"
@@ -193,7 +193,7 @@ internal struct ClientApiCommunicator {
             withParameters: params,
             success: { (responseObject: PaymentProductNetworks?) in
                 guard let paymentProductNetworks = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -211,7 +211,7 @@ internal struct ClientApiCommunicator {
     ) {
         let isRecurring = paymentContext.isRecurring ? "true" : "false"
         guard let locale = paymentContext.locale else {
-            failure(SessionError.RuntimeError("Locale was nil."))
+            failure(ConnectSDKError.localeWasNil)
             return
         }
 
@@ -231,7 +231,7 @@ internal struct ClientApiCommunicator {
             withParameters: params,
             success: { (responseObject: BasicPaymentProductGroups?) in
                 guard let paymentProductGroups = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -273,7 +273,7 @@ internal struct ClientApiCommunicator {
                     withParameters: params,
                     success: { (responseObject: PaymentProduct?) in
                         guard let paymentProduct = responseObject else {
-                            failure(SessionError.RuntimeError("Response was empty."))
+                            failure(ConnectSDKError.emptyResponse)
                             return
                         }
 
@@ -360,7 +360,7 @@ internal struct ClientApiCommunicator {
         let isRecurring = paymentContext.isRecurring ? "true" : "false"
 
         guard let locale = paymentContext.locale else {
-            failure(SessionError.RuntimeError("Locale was nil."))
+            failure(ConnectSDKError.localeWasNil)
             return
         }
 
@@ -379,7 +379,7 @@ internal struct ClientApiCommunicator {
             withParameters: params,
             success: { (responseObject: PaymentProductGroup?) in
                 guard let paymentProductGroup = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -401,7 +401,7 @@ internal struct ClientApiCommunicator {
             forURL: URL,
             success: { (responseObject: PublicKeyResponse?) -> Void in
                 guard let publicKeyResponse = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -437,7 +437,7 @@ internal struct ClientApiCommunicator {
             forURL: URL,
             success: { (responseObject: PrivacyPolicyResponse?) -> Void in
                 guard let privacyPolicyResponse = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -479,7 +479,7 @@ internal struct ClientApiCommunicator {
             additionalAcceptableStatusCodes: additionalAcceptableStatusCodes,
             success: { (responseObject: IINDetailsResponse?) -> Void in
                 guard let iinDetailsResponse = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -523,7 +523,7 @@ internal struct ClientApiCommunicator {
             withParameters: params,
             success: { (responseObject: ConvertedAmountResponse?) in
                 guard let convertedAmountResponse = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 
@@ -553,7 +553,7 @@ internal struct ClientApiCommunicator {
             withParameters: params,
             success: { (responseObject: DirectoryEntries?) in
                 guard let directoryEntries = responseObject else {
-                    failure(SessionError.RuntimeError("Response was empty."))
+                    failure(ConnectSDKError.emptyResponse)
                     return
                 }
 

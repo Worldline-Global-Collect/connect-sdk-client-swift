@@ -8,29 +8,21 @@
 
 import Foundation
 
-@available(
-    *,
-    deprecated,
-    message:
-        """
-        In a future release, this class, its functions and its properties will become internal to the SDK.
-        """
-)
-public class JOSEEncryptor {
-    public var encryptor = Encryptor()
+class JOSEEncryptor {
+    var encryptor = Encryptor()
 
-    public convenience init(encryptor: Encryptor) {
+    convenience init(encryptor: Encryptor) {
         self.init()
 
         self.encryptor = encryptor
     }
 
-    public func generateProtectedHeader(withKey keyId: String) -> String {
+    func generateProtectedHeader(withKey keyId: String) -> String {
         let header = "{\"alg\":\"RSA-OAEP\", \"enc\":\"A256CBC-HS512\", \"kid\":\"\(keyId)\"}"
         return header
     }
 
-    public func encryptToCompactSerialization(JSON: String, withPublicKey publicKey: SecKey, keyId: String) -> String {
+    func encryptToCompactSerialization(JSON: String, withPublicKey publicKey: SecKey, keyId: String) -> String {
         guard let protectedheader = generateProtectedHeader(withKey: keyId).data(using: String.Encoding.utf8),
             let AESKey = encryptor.generateRandomBytes(length: 32),
             let HMACKey = encryptor.generateRandomBytes(length: 32)
@@ -82,53 +74,7 @@ public class JOSEEncryptor {
         return concatenatedComponents
     }
 
-    public func decryptFromCompactSerialization(JOSE: String, withPrivateKey privateKey: SecKey) -> String {
-        let components = JOSE.components(separatedBy: ".")
-        let decodedProtectedHeader = String(data: components[0].base64URLDecode(),
-                                            encoding: String.Encoding.utf8)
-
-        let encryptedKeys = components[1].base64URLDecode()
-        let decryptedKeys = encryptor.decryptRSA(data: encryptedKeys, privateKey: privateKey)
-        let HMACKey = decryptedKeys.subdata(in: 0..<32)
-        let AESKey = decryptedKeys.subdata(in: 0..<32)
-
-        let initializationVector = components[2].base64URLDecode()
-
-        let ciphertext = components[3].base64URLDecode()
-        guard let plaintext = encryptor.decryptAES(data: ciphertext, key: AESKey, IV: initializationVector) else {
-            return ""
-        }
-        _ = String(data: plaintext, encoding: String.Encoding.utf8)
-
-        guard let additionalAuthenticatedData = components[0].data(using: String.Encoding.ascii) else {
-            return ""
-        }
-        // swiftlint:disable identifier_name
-        let AL = computeAL(forData: additionalAuthenticatedData)
-        // swiftlint:enable identifier_name
-
-        var authenticationData = additionalAuthenticatedData
-        authenticationData.append(initializationVector)
-        authenticationData.append(ciphertext)
-        authenticationData.append(AL)
-        guard let authenticationTag = encryptor.generateHMAC(data: authenticationData, key: HMACKey) else {
-            return ""
-        }
-        let truncatedAuthenticationTag = authenticationTag.subdata(in: 0..<32)
-        let encodedAuthenticationTag = truncatedAuthenticationTag.base64URLEncode()
-
-        var decrypted = "\(String(describing: decodedProtectedHeader))\n\(JOSE)\n"
-
-        if encodedAuthenticationTag == components[4] {
-            decrypted += "Authentication was successful"
-        } else {
-            decrypted += "Authentication failed"
-        }
-
-        return decrypted
-    }
-
-    public func computeAL(forData data: Data) -> Data {
+    func computeAL(forData data: Data) -> Data {
         var lengthInBits = data.count * 8
         // swiftlint:disable identifier_name
         var AL = Data(bytes: &lengthInBits, count: MemoryLayout<Int>.size)

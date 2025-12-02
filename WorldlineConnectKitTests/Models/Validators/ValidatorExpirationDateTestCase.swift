@@ -13,94 +13,70 @@ class ValidatorExpirationDateTestCase: XCTestCase {
 
     let gregorianCalendar = Calendar(identifier: .gregorian)
     let validator = ValidatorExpirationDate()
-    var request: PaymentRequest!
-
-    override func setUp() {
-        super.setUp()
-
-        let paymentProductJSON = Data("""
-        {
-            "fields": [
-                {
-                    "id": "expiryDate",
-                    "type": "expirydate",
-                    "displayHints": {
-                        "displayOrder": 0,
-                        "formElement": {}
-                    }
-                }
-            ],
-            "id": 1,
-            "paymentMethod": "card",
-            "displayHints": {
-                "displayOrder": 20,
-                "label": "Visa",
-                "logo": "/templates/master/global/css/img/ppimages/pp_logo_1_v1.png"
-            },
-            "usesRedirectionTo3rdParty": false
-        }
-        """.utf8)
-
-        guard let paymentProduct = try? JSONDecoder().decode(PaymentProduct.self, from: paymentProductJSON) else {
-            XCTFail("Not a valid PaymentProduct")
-            return
-        }
-
-        request = PaymentRequest(paymentProduct: paymentProduct)
-    }
 
     func testValid() {
-        validator.validate(value: "1244", for: request)
+        let isValid = validator.validate(value: "1244", for: "expiryDate")
+        XCTAssertTrue(isValid)
         XCTAssertEqual(validator.errors.count, 0, "Valid expiration date considered invalid")
     }
 
     func testInvalidEmptyString() {
-        validator.validate(value: "", for: request)
+        let isValid = validator.validate(value: "", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered invalid")
     }
 
     func testInvalidLength() {
-        validator.validate(value: "13", for: request)
+        let isValid = validator.validate(value: "13", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered invalid")
     }
 
     func testInvalidNonNumerical() {
-        validator.validate(value: "aaaa", for: request)
+        let isValid = validator.validate(value: "aaaa", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
     func testInvalidPartiallyNonNumerical() {
-        validator.validate(value: "12ab", for: request)
+        let isValid = validator.validate(value: "12ab", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
     func testInvalidMonth() {
-        validator.validate(value: "1350", for: request)
+        let isValid = validator.validate(value: "1350", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
     func testInvalidYearTooEarly() {
-        validator.validate(value: "0112", for: request)
+        let isValid = validator.validate(value: "0112", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
     func testInvalidYearTooLate() {
-        validator.validate(value: "1299", for: request)
+        let isValid = validator.validate(value: "1299", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
     func testInvalidInputTooLong() {
-        validator.validate(value: "122044", for: request)
+        let isValid = validator.validate(value: "122044", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
     func testInvalidWhitespace() {
-        validator.validate(value: "12 30", for: request)
+        let isValid = validator.validate(value: "12 30", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 
     func testInvalidSpecialCharacters() {
-        validator.validate(value: "12-30", for: request)
+        let isValid = validator.validate(value: "12-30", for: "expiryDate")
+        XCTAssertFalse(isValid)
         XCTAssertNotEqual(validator.errors.count, 0, "Invalid expiration date considered valid")
     }
 

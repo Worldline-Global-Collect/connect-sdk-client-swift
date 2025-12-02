@@ -10,10 +10,9 @@ import Foundation
 import CryptoSwift
 import Security
 
-@available(*, deprecated, message: "In a future release, this class and its functions will become internal to the SDK.")
-public class Encryptor {
+class Encryptor {
 
-    public func generateRSAKeyPair(withPublicTag publicTag: String, privateTag: String) {
+    func generateRSAKeyPair(withPublicTag publicTag: String, privateTag: String) {
         let privateKeyAttr: [String: Any] = [
             kSecAttrIsPermanent as String: true,
             kSecAttrApplicationTag as String: privateTag
@@ -41,7 +40,7 @@ public class Encryptor {
         }
     }
 
-    public func RSAKey(withTag tag: String) -> (SecKey?) {
+    func RSAKey(withTag tag: String) -> (SecKey?) {
         var keyRef: CFTypeRef?
 
         let queryAttr: NSDictionary = [
@@ -59,7 +58,7 @@ public class Encryptor {
         return keyRef as! (SecKey?) // swiftlint:disable:this force_cast
     }
 
-    public func deleteRSAKey(withTag tag: String) {
+    func deleteRSAKey(withTag tag: String) {
 
         let keyAttr: NSDictionary = [
             kSecClass: kSecClassKey,
@@ -73,12 +72,12 @@ public class Encryptor {
         }
     }
 
-    public func encryptRSA(data: Data, publicKey: SecKey) -> Data {
+    func encryptRSA(data: Data, publicKey: SecKey) -> Data {
         let buffer = convertDataToByteArray(data: data)
         return Data(encryptRSA(plaintext: buffer, publicKey: publicKey))
     }
 
-    public func encryptRSA(plaintext: [UInt8], publicKey: SecKey) -> [UInt8] {
+    func encryptRSA(plaintext: [UInt8], publicKey: SecKey) -> [UInt8] {
 
         var cipherBufferSize = SecKeyGetBlockSize(publicKey)
         var cipherBuffer = [UInt8](repeating: 0, count: cipherBufferSize)
@@ -93,105 +92,7 @@ public class Encryptor {
         return cipherBuffer
     }
 
-    public func decryptRSA(data: Data, privateKey: SecKey) -> Data {
-        let buffer = convertDataToByteArray(data: data)
-        return Data(decryptRSA(ciphertext: buffer, privateKey: privateKey))
-    }
-
-    public func decryptRSA(ciphertext: [UInt8], privateKey: SecKey) -> [UInt8] {
-
-        var plainBufferSize = SecKeyGetBlockSize(privateKey)
-        var plainBuffer = [UInt8](repeating: 0, count: plainBufferSize)
-
-        SecKeyDecrypt(privateKey,
-                      SecPadding.OAEP,
-                      ciphertext,
-                      ciphertext.count,
-                      &plainBuffer,
-                      &plainBufferSize)
-
-        return plainBuffer
-    }
-
-    // A PFX file suited to test the following methods can be generated with the following commands:
-    // - openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout privateKey.key -out certificate.crt
-    // - openssl pkcs12 -export -out certificate.pfx -inkey privatekey.key -in certificate.crt
-    public func storeRSAKeyPairFromPFXData(PFXData: NSData, password: String, publicTag: String, privateTag: String) {
-        var privateKey: SecKey?
-        var publicKey: SecKey?
-
-        let options: NSDictionary = [kSecImportExportPassphrase: password]
-        var items: CFArray?
-
-        let importStatus = SecPKCS12Import(PFXData, options, &items)
-        if importStatus != errSecSuccess || CFArrayGetCount(items) <= 0 {
-            Macros.DLog(message: "Unable to import PKCS #12 data: \(importStatus)")
-            return
-        }
-
-        let identities: NSDictionary = unsafeBitCast(CFArrayGetValueAtIndex(items, 0), to: NSDictionary.self)
-
-        // swiftlint:disable force_cast
-        let secIdentity: SecIdentity? = identities.value(forKey: kSecImportItemIdentity as String) as! SecIdentity?
-        guard let identity = secIdentity else {
-            return
-        }
-        // swiftlint:enable force_cast
-
-        let copyPrivateKeyStatus = SecIdentityCopyPrivateKey(identity, &privateKey)
-        if copyPrivateKeyStatus != errSecSuccess {
-            Macros.DLog(message: "Error while copying private key: \(copyPrivateKeyStatus)")
-            return
-        }
-
-        var certificate: SecCertificate?
-        let certificateStatus = SecIdentityCopyCertificate(identity, &certificate)
-        if certificateStatus != errSecSuccess {
-            Macros.DLog(message: "Error while copying certificate: \(certificateStatus)")
-            return
-        }
-
-        let policy: SecPolicy = SecPolicyCreateBasicX509()
-        var trust: SecTrust?
-        if let cert = certificate {
-            SecTrustCreateWithCertificates(cert, policy, &trust)
-        } else {
-            Macros.DLog(message: "Error while unwrapping certificate")
-            return
-        }
-
-        var result: SecTrustResultType?
-        let evaluateTrustStatus = SecTrustEvaluate(trust!, &result!)
-        if evaluateTrustStatus != errSecSuccess {
-            Macros.DLog(message: "Error while evaluating trust status: \(evaluateTrustStatus)")
-        }
-
-        publicKey = SecTrustCopyPublicKey(trust!)
-
-        if let publicKey = publicKey {
-            storeRSAKey(key: publicKey, tag: publicTag)
-        }
-
-        if let privateKey = privateKey {
-            storeRSAKey(key: privateKey, tag: privateTag)
-        }
-    }
-
-    public func storeRSAKey(key: SecKey, tag: String) {
-        let keyAttr: NSDictionary = [
-            kSecClass: kSecClassKey,
-            kSecAttrApplicationTag: tag,
-            kSecAttrType: kSecAttrKeyTypeRSA,
-            kSecValueRef: key
-        ]
-
-        let addStatus = SecItemAdd(keyAttr, nil)
-        if addStatus != errSecSuccess {
-            Macros.DLog(message: "Error while adding key: \(addStatus)")
-        }
-    }
-
-    public func storePublicKey(publicKey: Data, tag: String) {
+    func storePublicKey(publicKey: Data, tag: String) {
         let keyAttr: NSDictionary = [
             kSecClass: kSecClassKey,
             kSecAttrApplicationTag: tag,
@@ -205,7 +106,7 @@ public class Encryptor {
         }
     }
 
-    public func stripPublicKey(data: Data) -> (Data?) {
+    func stripPublicKey(data: Data) -> (Data?) {
         let publicKey = convertDataToByteArray(data: data)
         if let result = stripPublicKey(publicKey: publicKey) {
             return Data(result)
@@ -214,7 +115,7 @@ public class Encryptor {
         }
     }
 
-    public func stripPublicKey(publicKey: [UInt8]) -> ([UInt8]?) {
+    func stripPublicKey(publicKey: [UInt8]) -> ([UInt8]?) {
         let prefixLength = 24
         let prefix: [UInt8] =
             [
@@ -231,22 +132,13 @@ public class Encryptor {
     }
 
     // swiftlint:disable identifier_name
-    public func encryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
+    func encryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
         let plaintext = convertDataToByteArray(data: data)
 
         if let result = encryptAES(plaintext: plaintext, key: key.bytes, IV: IV.bytes) {
             return Data(result)
         }
         return nil
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "Deprecated in favor of encryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8])"
-    )
-    public func encryptAES(plaintext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
-        return self.encryptAES(plaintext: plaintext, key: key.bytes, IV: IV.bytes)
     }
 
     private func encryptAES(plaintext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
@@ -258,7 +150,7 @@ public class Encryptor {
         return ciphertext
     }
 
-    public func decryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
+    func decryptAES(data: Data, key: Data, IV: Data) -> (Data?) {
         let ciphertext = convertDataToByteArray(data: data)
         // let key = String(data: key, encoding: String.Encoding.utf8)!
         // let IV = String(data: IV, encoding: String.Encoding.utf8)!
@@ -269,16 +161,7 @@ public class Encryptor {
         return nil
     }
 
-    @available(
-        *,
-        deprecated,
-        message: "Deprecated in favor of decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8])"
-    )
-    public func decryptAES(ciphertext: [UInt8], key: String, IV: String) -> ([UInt8]?) {
-        return self.decryptAES(ciphertext: ciphertext, key: key.bytes, IV: IV.bytes)
-    }
-
-    public func decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
+    func decryptAES(ciphertext: [UInt8], key: [UInt8], IV: [UInt8]) -> ([UInt8]?) {
         guard let aes = try? AES(key: key, blockMode: CBC(iv: IV), padding: .pkcs7),
               let plaintext = try? aes.decrypt(ciphertext) else {
             return nil
@@ -288,7 +171,7 @@ public class Encryptor {
     }
     // swiftlint:enable identifier_name
 
-    public func generateHMAC(data: Data, key: Data) -> (Data?) {
+    func generateHMAC(data: Data, key: Data) -> (Data?) {
         let input = convertDataToByteArray(data: data)
         let keyBytes = convertDataToByteArray(data: key)
         if let hmac = generateHMAC(input: input, key: keyBytes) {
@@ -298,7 +181,7 @@ public class Encryptor {
         }
     }
 
-    public func generateHMAC(input: [UInt8], key: [UInt8]) -> ([UInt8]?) {
+    func generateHMAC(input: [UInt8], key: [UInt8]) -> ([UInt8]?) {
         guard let hmac = try? HMAC(key: key, variant: .sha512).authenticate(input) else {
             return nil
         }
@@ -306,11 +189,11 @@ public class Encryptor {
         return hmac
     }
 
-    public func generateRandomBytes(length: Int) -> (Data?) {
+    func generateRandomBytes(length: Int) -> (Data?) {
         return Data(AES.randomIV(length))
     }
 
-    public func generateUUID() -> (String) {
+    func generateUUID() -> (String) {
         return UUID().uuidString
     }
 

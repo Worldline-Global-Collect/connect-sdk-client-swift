@@ -18,17 +18,29 @@ class PaymentRequestTestCase: XCTestCase {
     var account: AccountOnFile!
     let fieldId = "1"
     var attribute: AccountOnFileAttribute!
-    let session = Session(
-        clientSessionId: "client-session-id",
-        customerId: "customer-id",
-        baseURL: "https://ams1.sandbox.api-worldline.com/client/v1",
-        assetBaseURL: "https://ams1.sandbox.api-worldline.com/client/v1/assets",
-        appIdentifier: "",
-        loggingEnabled: false
-    )
 
     override func setUp() {
         super.setUp()
+
+        ConnectSDK.initialize(
+            connectSDKConfiguration: ConnectSDKConfiguration(
+                sessionConfiguration: SessionConfiguration(
+                    clientSessionId: "client-session-id",
+                    customerId: "customer-id",
+                    clientApiUrl: "https://ams1.sandbox.api-worldline.com/client/v1",
+                    assetUrl: "https://ams1.sandbox.api-worldline.com/client/v1/assets"
+                )),
+            paymentConfiguration: PaymentConfiguration(
+                paymentContext: PaymentContext(
+                    amountOfMoney: PaymentAmountOfMoney(
+                        totalAmount: 3,
+                        currencyCode: "EUR"
+                    ),
+                    isRecurring: true,
+                    countryCode: "NL"
+                )
+            )
+        )
 
         let paymentProductJSON = Data("""
         {
@@ -179,10 +191,13 @@ class PaymentRequestTestCase: XCTestCase {
         }
         let expectation = self.expectation(description: "Response provided")
 
-        session.prepare(request, success: { (_) in
+        ConnectSDK.encryptPaymentRequest(request, success: { (_) in
             expectation.fulfill()
         }, failure: { (error) in
-            XCTFail("Prepare failed: \(error).")
+            XCTFail("Unexpected failure while preparing PaymentRequest: \(error).")
+            expectation.fulfill()
+        }, apiFailure: { (apiErrorResponse) in
+            XCTFail("Unexpected API failure while preparing PaymentRequest: \(apiErrorResponse.errors)")
             expectation.fulfill()
         })
 

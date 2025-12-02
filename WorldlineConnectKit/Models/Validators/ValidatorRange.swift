@@ -8,27 +8,14 @@
 
 import Foundation
 
-public class ValidatorRange: Validator, ValidationRule, ResponseObjectSerializable {
+public class ValidatorRange: Validator, ValidationRule {
     public var minValue = 0
     public var maxValue = 0
     public var formatter = NumberFormatter()
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public init(minValue: Int?, maxValue: Int?) {
+    internal init(minValue: Int?, maxValue: Int?) {
         self.minValue = minValue ?? 0
         self.maxValue = maxValue ?? 0
-
-        super.init(messageId: "range", validationType: .range)
-    }
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init(json: [String: Any]) {
-        if let input = json["maxValue"] as? Int {
-            maxValue = input
-        }
-        if let input = json["minValue"] as? Int {
-            minValue = input
-        }
 
         super.init(messageId: "range", validationType: .range)
     }
@@ -51,15 +38,6 @@ public class ValidatorRange: Validator, ValidationRule, ResponseObjectSerializab
         try? container.encode(maxValue, forKey: .maxValue)
 
         try? super.encode(to: encoder)
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
-    )
-    public override func validate(value: String, for request: PaymentRequest) {
-        _ = validate(value: value, for: nil)
     }
 
     public func validate(field fieldId: String, in request: PaymentRequest) -> Bool {

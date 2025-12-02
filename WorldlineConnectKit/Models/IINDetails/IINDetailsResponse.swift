@@ -8,48 +8,15 @@
 
 import Foundation
 
-public class IINDetailsResponse: ResponseObjectSerializable, Codable {
+public class IINDetailsResponse: Codable {
 
     public var paymentProductId: String?
     public var status: IINStatus = .supported
     public var coBrands = [IINDetail]()
     public var countryCode: String?
-    @available(*, deprecated, message: "In a future release, this property will be removed. Use countryCode instead.")
-    public var countryCodeString: String?
     public var allowedInContext = false
 
-    private init() {
-    }
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init(json: [String: Any]) {
-        if let input = json["isAllowedInContext"] as? Bool {
-            allowedInContext = input
-        }
-
-        if let input = json["paymentProductId"] as? Int {
-            paymentProductId = "\(input)"
-            if !allowedInContext {
-                status = .existingButNotAllowed
-            }
-        } else {
-            status = .unknown
-        }
-
-        if let input = json["countryCode"] as? String {
-            countryCode = input
-            countryCodeString = input
-        }
-
-        if let input = json["coBrands"] as? [[String: Any]] {
-            coBrands = []
-            for detailInput in input {
-                if let detail = IINDetail(json: detailInput) {
-                    coBrands.append(detail)
-                }
-            }
-        }
-    }
+    private init() {}
 
     private enum CodingKeys: String, CodingKey {
         case paymentProductId, coBrands, countryCode, isAllowedInContext, status
@@ -72,7 +39,6 @@ public class IINDetailsResponse: ResponseObjectSerializable, Codable {
         }
 
         if let countryCode = try? container.decodeIfPresent(String.self, forKey: .countryCode) {
-            self.countryCodeString = countryCode
             self.countryCode = countryCode
         }
 
@@ -90,26 +56,8 @@ public class IINDetailsResponse: ResponseObjectSerializable, Codable {
         try? container.encode(allowedInContext, forKey: .isAllowedInContext)
     }
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    convenience public init(status: IINStatus) {
+    convenience internal init(status: IINStatus) {
         self.init()
         self.status = status
-    }
-
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    convenience public init(
-        paymentProductId: String,
-        status: IINStatus,
-        coBrands: [IINDetail],
-        countryCode: String,
-        allowedInContext: Bool
-    ) {
-        self.init()
-        self.paymentProductId = paymentProductId
-        self.status = status
-        self.coBrands = coBrands
-        self.countryCode = countryCode
-        self.countryCodeString = countryCode
-        self.allowedInContext = allowedInContext
     }
 }

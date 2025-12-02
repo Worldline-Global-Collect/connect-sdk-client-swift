@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BasicPaymentProductGroups: ResponseObjectSerializable, Codable {
+public class BasicPaymentProductGroups: Codable {
 
     public var paymentProductGroups = [BasicPaymentProductGroup]()
 
@@ -41,21 +41,7 @@ public class BasicPaymentProductGroups: ResponseObjectSerializable, Codable {
         }
     }
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public init() {}
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init(json: [String: Any]) {
-        if let input = json["paymentProductGroups"] as? [[String: Any]] {
-            for groupInput in input {
-                if let group = BasicPaymentProductGroup(json: groupInput) {
-                    paymentProductGroups.append(group)
-                }
-            }
-
-            sort()
-        }
-    }
+    internal init() {}
 
     enum CodingKeys: CodingKey {
         case paymentProductGroups

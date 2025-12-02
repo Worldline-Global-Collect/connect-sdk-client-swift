@@ -12,12 +12,6 @@ public class PublicKeyResponse: Codable {
     public var keyId: String
     public var encodedPublicKey: String
 
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public init(keyId: String, encodedPublicKey: String) {
-        self.keyId = keyId
-        self.encodedPublicKey = encodedPublicKey
-    }
-
     private enum CodingKeys: String, CodingKey {
         case keyId, publicKey
     }

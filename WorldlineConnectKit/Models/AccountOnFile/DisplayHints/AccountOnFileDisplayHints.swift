@@ -13,8 +13,7 @@ public class AccountOnFileDisplayHints: Codable {
     public var labelTemplate: LabelTemplate = LabelTemplate()
     public var logo: String?
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public init() {}
+    internal init() {}
 
     private enum CodingKeys: String, CodingKey {
         case labelTemplate, logo

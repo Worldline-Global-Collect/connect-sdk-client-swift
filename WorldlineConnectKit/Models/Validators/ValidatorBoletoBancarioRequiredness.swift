@@ -9,16 +9,6 @@
 public class ValidatorBoletoBancarioRequiredness: Validator, ValidationRule {
     public var fiscalNumberLength: Int
 
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init?(json: [String: Any]) {
-        guard let input = json["fiscalNumberLength"] as? Int else {
-            return nil
-        }
-        fiscalNumberLength = input
-
-        super.init(messageId: "fiscalNumberBoletoBancario", validationType: .boletoBancarioRequiredness)
-    }
-
     private enum CodingKeys: String, CodingKey {
         case fiscalNumberLength, fiscalNumberLengthToValidate
     }
@@ -40,15 +30,6 @@ public class ValidatorBoletoBancarioRequiredness: Validator, ValidationRule {
         try? container.encode(fiscalNumberLength, forKey: .fiscalNumberLengthToValidate)
 
         try? super.encode(to: encoder)
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
-    )
-    override public func validate(value: String, for request: PaymentRequest) {
-        _ = validate(value: value, for: nil, in: request)
     }
 
     public func validate(field fieldId: String, in request: PaymentRequest) -> Bool {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BasicPaymentProducts: Equatable, ResponseObjectSerializable, Codable {
+public class BasicPaymentProducts: Equatable, Codable {
     public var paymentProducts = [BasicPaymentProduct]()
     public var stringFormatter: StringFormatter? {
         get { return paymentProducts.first?.stringFormatter }
@@ -40,21 +40,7 @@ public class BasicPaymentProducts: Equatable, ResponseObjectSerializable, Codabl
         return accountsOnFile
     }
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public init() {}
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init(json: [String: Any]) {
-        guard let paymentProductsInput = json["paymentProducts"] as? [[String: Any]] else {
-            return
-        }
-
-        for product in paymentProductsInput {
-            if let paymentProduct = BasicPaymentProduct(json: product) {
-                paymentProducts.append(paymentProduct)
-            }
-        }
-    }
+    internal init() {}
 
     private enum CodingKeys: String, CodingKey {
         case paymentProducts

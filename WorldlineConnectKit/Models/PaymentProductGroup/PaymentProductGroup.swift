@@ -9,42 +9,7 @@
 import Foundation
 
 public class PaymentProductGroup: BasicPaymentProductGroup, PaymentItem {
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this property will be removed since it is not returned from the API."
-    )
-    public var allowsTokenization = false
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this property will be removed since it is not returned from the API."
-    )
-    public var allowsRecurring = false
-    @available(
-        *,
-        deprecated,
-         message: "In a future release, this property will be removed since it is not returned from the API."
-    )
-    public var autoTokenized = false
     public var fields = PaymentProductFields()
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public required init?(json: [String: Any]) {
-
-        super.init(json: json)
-
-        guard let fields = json["fields"] as? [[String: Any]] else {
-            return nil
-        }
-
-        for field in fields {
-            if let paymentProductField = PaymentProductField(json: field) {
-                self.fields.paymentProductFields.append(paymentProductField)
-            }
-        }
-    }
 
     private enum CodingKeys: String, CodingKey {
         case fields

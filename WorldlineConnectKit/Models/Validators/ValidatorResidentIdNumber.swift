@@ -10,30 +10,13 @@ import Foundation
 
 public class ValidatorResidentIdNumber: Validator, ValidationRule {
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public override init() {
+    internal override init() {
         super.init(messageId: "residentIdNumber", validationType: .residentIdNumber)
     }
 
     // periphery:ignore:parameters decoder
     public required init(from decoder: Decoder) throws {
         super.init(messageId: "residentIdNumber", validationType: .residentIdNumber)
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
-    )
-    /**
-     Validates a Chinese Resident ID Number.
-        - Parameters:
-            - Value: The ID to be verified, 15 to 18 characters long
-            - PaymentRequest: The Payment request that the id is a part of
-        - Important: The return value can be obtained by reading the errors array of this class
-     */
-    public override func validate(value: String, for: PaymentRequest) {
-        _ = validate(value: value, for: nil)
     }
 
     /**

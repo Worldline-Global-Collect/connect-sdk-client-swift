@@ -19,7 +19,14 @@ class PaymentProductTestCase: XCTestCase {
 
         let paymentProductJSON = Data("""
         {
-            "fields": [],
+            "fields": [{
+                "id": "expiryDate",
+                "type": "expirydate",
+                "displayHints": {
+                    "displayOrder": 0,
+                    "formElement": {}
+                }
+            }],
             "id": 1,
             "paymentMethod": "card",
             "displayHints": {

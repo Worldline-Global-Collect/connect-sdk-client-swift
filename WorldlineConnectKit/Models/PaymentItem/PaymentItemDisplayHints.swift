@@ -16,19 +16,6 @@ public class PaymentItemDisplayHints: Codable {
     public var logoPath: String
     public var logoImage: UIImage?
 
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init?(json: [String: Any]) {
-        if let input = json["label"] as? String {
-            label = input
-        }
-        guard let logoPath = json["logo"] as? String else {
-            return nil
-        }
-        self.logoPath = logoPath
-
-        displayOrder = json["displayOrder"] as? Int
-    }
-
     private enum CodingKeys: String, CodingKey {
         case displayOrder, label, logo
     }

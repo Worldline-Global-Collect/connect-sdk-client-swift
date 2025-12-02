@@ -10,8 +10,6 @@ import Foundation
 
 public class PaymentContext: Decodable {
     public var countryCode: String
-    @available(*, deprecated, message: "In a future release, this property will be removed. Use countryCode instead.")
-    public var countryCodeString: String
     public var locale: String?
     public var forceBasicFlow: Bool?
     public var amountOfMoney: PaymentAmountOfMoney
@@ -28,7 +26,6 @@ public class PaymentContext: Decodable {
         self.isRecurring = isRecurring
         self.isInstallments = isInstallments
         self.countryCode = countryCode
-        self.countryCodeString = countryCode
 
         if let languageCode = Locale.current.languageCode {
             self.locale = languageCode.appending("_")
@@ -46,10 +43,8 @@ public class PaymentContext: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         if let countryCode = try? container.decodeIfPresent(String.self, forKey: .countryCode) {
-            self.countryCodeString = countryCode
             self.countryCode = countryCode
         } else {
-            self.countryCodeString = "US"
             self.countryCode = "US"
         }
 

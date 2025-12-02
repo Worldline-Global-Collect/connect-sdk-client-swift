@@ -12,8 +12,7 @@ public class ValidatorEmailAddress: Validator, ValidationRule {
     private let regexString = "^[^@\\.]+(\\.[^@\\.]+)*@([^@\\.]+\\.)*[^@\\.]+\\.[^@\\.][^@\\.]+$"
     public var expression: NSRegularExpression
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public override init() {
+    internal override init() {
         guard let regex = try? NSRegularExpression(pattern: regexString) else {
             fatalError("Could not create Regular Expression")
         }
@@ -30,15 +29,6 @@ public class ValidatorEmailAddress: Validator, ValidationRule {
         expression = regex
 
         super.init(messageId: "emailAddress", validationType: .emailAddress)
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
-    )
-    public override func validate(value: String, for request: PaymentRequest) {
-        _ = validate(value: value, for: nil)
     }
 
     public func validate(field fieldId: String, in request: PaymentRequest) -> Bool {

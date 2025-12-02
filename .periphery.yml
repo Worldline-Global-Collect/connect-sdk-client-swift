@@ -1,9 +1,6 @@
 project: WorldlineConnectKit.xcodeproj
 schemes:
 - WorldlineConnectKit
-targets:
-- WorldlineConnectKit
-- WorldlineConnectKitTests
 clean_build: true
 retain_public: true
 build_arguments:

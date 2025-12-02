@@ -13,23 +13,6 @@ public class PaymentProduct: BasicPaymentProduct, PaymentItem {
     public var fields: PaymentProductFields = PaymentProductFields()
     public var fieldsWarning: String?
 
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public required init?(json: [String: Any]) {
-        super.init(json: json)
-
-        guard let input = json["fields"] as? [[String: Any]] else {
-            return
-        }
-
-        for fieldInput in input {
-            if let field = PaymentProductField(json: fieldInput) {
-                fields.paymentProductFields.append(field)
-            }
-        }
-
-        fieldsWarning = json["fieldsWarning"] as? String
-    }
-
     private enum CodingKeys: String, CodingKey {
         case fields, fieldsWarning
     }

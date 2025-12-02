@@ -26,12 +26,8 @@ public class ValidationErrorAllowed: ValidationError {}
 public class ValidationErrorEmailAddress: ValidationError {}
 public class ValidationErrorExpirationDate: ValidationError {}
 public class ValidationErrorFixedList: ValidationError {}
-@available(*, deprecated, message: "In a future release, this class will be removed.")
-public class ValidationErrorInteger: ValidationError {}
 public class ValidationErrorIsRequired: ValidationError {}
 public class ValidationErrorLuhn: ValidationError {}
-@available(*, deprecated, message: "In a future release, this class will be removed.")
-public class ValidationErrorNumericString: ValidationError {}
 public class ValidationErrorRegularExpression: ValidationError {}
 public class ValidationErrorTermsAndConditions: ValidationError {}
 public class ValidationErrorIBAN: ValidationError {}

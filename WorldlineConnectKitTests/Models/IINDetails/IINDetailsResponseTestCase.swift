@@ -16,18 +16,25 @@ class IINDetailsResponseTestCase: XCTestCase {
 
     let host = "ams1.sandbox.api-worldline.com"
 
-    let session = Session(
-        clientSessionId: "client-session-id",
-        customerId: "customer-id",
-        baseURL: "https://ams1.sandbox.api-worldline.com/client/v1",
-        assetBaseURL: "https://ams1.sandbox.api-worldline.com/client/v1/assets",
-        appIdentifier: "",
-        loggingEnabled: false
-    )
-    let context = PaymentContext(
-        amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: "EUR"),
-        isRecurring: true,
-        countryCode: "NL"
+    let clientApi = ClientApi(
+        sdkConfiguration: ConnectSDKConfiguration(
+            sessionConfiguration: SessionConfiguration(
+                clientSessionId: "client-session-id",
+                customerId: "customer-id",
+                clientApiUrl: "https://ams1.sandbox.api-worldline.com/client/v1",
+                assetUrl: "https://ams1.sandbox.api-worldline.com/client/v1/assets"
+            )
+        ),
+        paymentConfiguration: PaymentConfiguration(
+            paymentContext: PaymentContext(
+                amountOfMoney: PaymentAmountOfMoney(
+                    totalAmount: 3,
+                    currencyCode: "EUR"
+                ),
+                isRecurring: true,
+                countryCode: "NL"
+            )
+        )
     )
 
     override func setUp() {
@@ -58,7 +65,7 @@ class IINDetailsResponseTestCase: XCTestCase {
 
     func testGetIINDetailsNotEnoughDigits() {
         let expectation = self.expectation(description: "Response provided")
-        session.iinDetails(forPartialCreditCardNumber: "22", context: context, success: { (response) in
+        clientApi.iinDetails(forPartialCreditCardNumber: "22", success: { (response) in
             XCTAssertTrue(
                 response.status == .notEnoughDigits,
                 "Did not get the correct response status: \(response.status)"
@@ -66,6 +73,9 @@ class IINDetailsResponseTestCase: XCTestCase {
             expectation.fulfill()
         }, failure: { (error) in
             XCTFail("Unexpected failure while getting IIN Details: \(error.localizedDescription)")
+        }, apiFailure: { (apiErrorResponse) in
+            XCTFail("Unexpected API failure while getting IIN Details: \(apiErrorResponse.errors)")
+            expectation.fulfill()
         })
         waitForExpectations(timeout: 3) { error in
             if let error = error {
@@ -76,7 +86,7 @@ class IINDetailsResponseTestCase: XCTestCase {
 
     func testGetIINDetails() {
         let expectation = self.expectation(description: "Response provided")
-        session.iinDetails(forPartialCreditCardNumber: "666666", context: context, success: { (response) in
+        clientApi.iinDetails(forPartialCreditCardNumber: "666666", success: { (response) in
             XCTAssertTrue(
                 response.paymentProductId == "3",
                 "Payment product ID did not match: \(String(describing: response.paymentProductId))"
@@ -94,6 +104,9 @@ class IINDetailsResponseTestCase: XCTestCase {
             expectation.fulfill()
         }, failure: { (error) in
             XCTFail("Unexpected failure while getting IIN Details: \(error.localizedDescription)")
+        }, apiFailure: { (apiErrorResponse) in
+            XCTFail("Unexpected API failure while getting IIN Details: \(apiErrorResponse.errors)")
+            expectation.fulfill()
         })
         waitForExpectations(timeout: 3) { error in
             if let error = error {

@@ -8,26 +8,18 @@
 
 import UIKit
 
-@available(
-    *,
-    deprecated,
-    message:
-        """
-        In a future release, this class, its functions and its properties will become internal to the SDK.
-        """
-)
-public class Util {
+class Util {
     static let shared = Util()
-    public var metaInfo: [String: String]?
+    var metaInfo: [String: String]?
 
-    public var platformIdentifier: String {
+    var platformIdentifier: String {
         let OSName = UIDevice.current.systemName
         let OSVersion = UIDevice.current.systemVersion
 
         return "\(OSName)/\(OSVersion)"
     }
 
-    public var screenSize: String {
+    var screenSize: String {
         let screenBounds = UIScreen.main.bounds
         let screenScale = UIScreen.main.scale
         let screenSize =
@@ -39,7 +31,7 @@ public class Util {
         return "\(Int(screenSize.width))\(Int(screenSize.height))"
     }
 
-    public var deviceType: String {
+    var deviceType: String {
         var size = 0
         sysctlbyname("hw.machine", nil, &size, nil, 0)
         var machine = [CChar](repeating: 0, count: size)
@@ -47,7 +39,7 @@ public class Util {
         return String(cString: machine)
     }
 
-    public init() {
+    init() {
         metaInfo = [
             "platformIdentifier": platformIdentifier,
             "sdkCreator": "Wordline Connect",
@@ -57,23 +49,19 @@ public class Util {
         ]
     }
 
-    public var base64EncodedClientMetaInfo: String? {
+    var base64EncodedClientMetaInfo: String? {
         return base64EncodedClientMetaInfo(withAppIdentifier: nil)
     }
 
-    public func base64EncodedClientMetaInfo(withAddedData addedData: [String: String]) -> String? {
+    func base64EncodedClientMetaInfo(withAddedData addedData: [String: String]) -> String? {
         return base64EncodedClientMetaInfo(withAppIdentifier: nil, ipAddress: nil, addedData: addedData)
     }
 
-    public func base64EncodedClientMetaInfo(withAppIdentifier appIdentifier: String?) -> String? {
+    func base64EncodedClientMetaInfo(withAppIdentifier appIdentifier: String?) -> String? {
         return base64EncodedClientMetaInfo(withAppIdentifier: appIdentifier, ipAddress: nil, addedData: nil)
     }
 
-    public func base64EncodedClientMetaInfo(withAppIdentifier appIdentifier: String?, ipAddress: String?) -> String? {
-        return base64EncodedClientMetaInfo(withAppIdentifier: appIdentifier, ipAddress: ipAddress, addedData: nil)
-    }
-
-    public func base64EncodedClientMetaInfo(
+    func base64EncodedClientMetaInfo(
         withAppIdentifier appIdentifier: String?,
         ipAddress: String?,
         addedData: [String: String]?
@@ -86,7 +74,7 @@ public class Util {
         )
     }
 
-    internal func base64EncodedClientMetaInfo(
+    func base64EncodedClientMetaInfo(
         withAppIdentifier appIdentifier: String?,
         ipAddress: String?,
         addedData: [String: String]? = nil,
@@ -113,7 +101,7 @@ public class Util {
         return base64EncodedString(fromDictionary: metaInfo!)
     }
 
-    public func base64EncodedString(fromDictionary dictionary: [AnyHashable: Any]) -> String? {
+    func base64EncodedString(fromDictionary dictionary: [AnyHashable: Any]) -> String? {
         guard let json = try? JSONSerialization.data(withJSONObject: dictionary, options: []) else {
             Macros.DLog(message: "Unable to serialize dictionary")
             return nil

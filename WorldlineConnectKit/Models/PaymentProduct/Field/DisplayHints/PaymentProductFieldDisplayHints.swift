@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PaymentProductFieldDisplayHints: ResponseObjectSerializable, Codable {
+public class PaymentProductFieldDisplayHints: Codable {
 
     public var alwaysShow = false
     public var displayOrder: Int?
@@ -20,51 +20,6 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable, Codabl
     public var label: String?
     public var link: URL?
     public var preferredInputType: PreferredInputType = .noKeyboard
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init?(json: [String: Any]) {
-        guard let input = json["formElement"] as? [String: Any],
-              let formElement = FormElement(json: input) else {
-            return nil
-        }
-        self.formElement = formElement
-
-        if let input = json["alwaysShow"] as? Bool {
-            alwaysShow = input
-        }
-
-        if let input = json["displayOrder"] as? Int {
-            displayOrder = input
-        }
-
-        if let input = json["mask"] as? String {
-            mask = input
-        }
-
-        if let input = json["obfuscate"] as? Bool {
-            obfuscate = input
-        }
-
-        if let input = json["placeholderLabel"] as? String {
-            placeholderLabel = input
-        }
-
-        if let input = json["label"] as? String {
-            label = input
-        }
-
-        if let input = json["link"]  as? String {
-            link = URL(string: input)
-        }
-
-        if let input = json["preferredInputType"] as? String {
-            preferredInputType = self.getPreferredInputType(preferredInputType: input)
-        }
-
-        if let input = json["tooltip"] as? [String: Any] {
-            tooltip = ToolTip(json: input)
-        }
-    }
 
     private enum CodingKeys: String, CodingKey {
         case alwaysShow, displayOrder, formElement, mask, obfuscate, placeholderLabel, tooltip, label,
@@ -100,22 +55,5 @@ public class PaymentProductFieldDisplayHints: ResponseObjectSerializable, Codabl
         try? container.encodeIfPresent(link?.absoluteString, forKey: .link)
         try? container.encode(preferredInputType.rawValue, forKey: .preferredInputType)
         try? container.encodeIfPresent(tooltip, forKey: .tooltip)
-    }
-
-    private func getPreferredInputType(preferredInputType: String) -> PreferredInputType {
-        switch preferredInputType {
-        case "StringKeyboard":
-            return .stringKeyboard
-        case "IntegerKeyboard":
-            return .integerKeyboard
-        case "EmailAddressKeyboard":
-            return .emailAddressKeyboard
-        case "PhoneNumberKeyboard":
-            return .phoneNumberKeyboard
-        case "DateKeyboard":
-            return .dateKeyboard
-        default:
-            return .noKeyboard
-        }
     }
 }

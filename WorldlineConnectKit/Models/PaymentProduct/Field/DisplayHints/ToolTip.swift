@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class ToolTip: ResponseObjectSerializable, Codable {
+public class ToolTip: Codable {
 
     public var label: String?
     public var imagePath: String?

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// periphery:ignore
 class StubBundle: Bundle {
   override func path(forResource name: String?, ofType ext: String?) -> String? {
     switch name! {

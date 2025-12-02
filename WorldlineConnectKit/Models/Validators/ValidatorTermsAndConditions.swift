@@ -9,23 +9,13 @@
 import Foundation
 
 public class ValidatorTermsAndConditions: Validator, ValidationRule {
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public override init() {
+    internal override init() {
         super.init(messageId: "termsAndConditions", validationType: .termsAndConditions)
     }
 
     // periphery:ignore:parameters decoder
     public required init(from decoder: Decoder) throws {
         super.init(messageId: "termsAndConditions", validationType: .termsAndConditions)
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
-    )
-    public override func validate(value: String, for request: PaymentRequest) {
-        _ = validate(value: value, for: nil)
     }
 
     public func validate(field fieldId: String, in request: PaymentRequest) -> Bool {

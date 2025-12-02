@@ -9,8 +9,7 @@
 import Foundation
 
 public class ValidatorIBAN: Validator, ValidationRule {
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public override init() {
+    internal override init() {
         super.init(messageId: "iban", validationType: .iban)
     }
 
@@ -42,15 +41,6 @@ public class ValidatorIBAN: Validator, ValidationRule {
             remainder = String(currentResult) + remainder.dropFirst(9)
         } while remainder.count > 2
         return (Int(remainder)!) % modulo
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
-    )
-    public override func validate(value: String, for request: PaymentRequest) {
-        _ = validate(value: value, for: nil)
     }
 
     public func validate(field fieldId: String, in request: PaymentRequest) -> Bool {

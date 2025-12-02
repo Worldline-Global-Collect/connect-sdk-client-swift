@@ -8,24 +8,11 @@
 
 import Foundation
 
-public class IINDetail: ResponseObjectSerializable, Codable {
+public class IINDetail: Codable {
     public var paymentProductId: String
     public var allowedInContext: Bool = false
 
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init?(json: [String: Any]) {
-        if let input = json["paymentProductId"] as? Int {
-            paymentProductId = "\(input)"
-        } else {
-            return nil
-        }
-        if let input = json["isAllowedInContext"] as? Bool {
-            allowedInContext = input
-        }
-    }
-
-    @available(*, deprecated, message: "In a future release, this intializer will become internal to the SDK.")
-    public init(paymentProductId: String, allowedInContext: Bool) {
+    internal init(paymentProductId: String, allowedInContext: Bool) {
         self.paymentProductId = paymentProductId
         self.allowedInContext = allowedInContext
     }

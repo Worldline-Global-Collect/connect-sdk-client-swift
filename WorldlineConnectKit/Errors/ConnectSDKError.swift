@@ -10,6 +10,9 @@ import Foundation
 
 public enum ConnectSDKError: Int, Error {
     case connectSDKNotInitialized
+    case emptyResponse
+    case invalidRegularExpression
+    case localeWasNil
     case publicKeyDecodeError
     case rsaKeyNotFound
 }
@@ -23,10 +26,17 @@ extension ConnectSDKError: LocalizedError {
                 ConnectSDK must be initialized before you can perform this operation.
                 Initialize it by calling ConnectSDK.initialize()
                 """
+        case .emptyResponse:
+            return "Response was empty."
+        case .invalidRegularExpression:
+            return "Regular expression is invalid."
+        case .localeWasNil:
+            return "Locale was nil."
         case .publicKeyDecodeError:
             return "Failed to decode Public key."
         case .rsaKeyNotFound:
             return "Failed to find RSA key."
+
         }
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSerializable, Codable {
+public class BasicPaymentProduct: Equatable, BasicPaymentItem, Codable {
 
     public var identifier: String
     public var displayHints: PaymentItemDisplayHints
@@ -43,61 +43,6 @@ public class BasicPaymentProduct: Equatable, BasicPaymentItem, ResponseObjectSer
             if let stringFormatter = newValue {
                 for accountOnFile in accountsOnFile.accountsOnFile {
                     accountOnFile.stringFormatter = stringFormatter
-                }
-            }
-        }
-    }
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public required init?(json: [String: Any]) {
-        guard let identifier = json["id"] as? Int,
-              let paymentMethod = json["paymentMethod"] as? String,
-              let hints = json["displayHints"] as? [String: Any],
-              let displayHints = PaymentItemDisplayHints(json: hints)
-        else {
-            return nil
-        }
-        if let paymentProduct302SpecificDataDictionary = json["paymentProduct302SpecificData"] as? [String: Any],
-            let paymentProduct302SpecificData =
-                PaymentProduct302SpecificData(json: paymentProduct302SpecificDataDictionary) {
-            self.paymentProduct302SpecificData = paymentProduct302SpecificData
-        }
-        if let paymentProduct320SpecificDataDictionary = json["paymentProduct320SpecificData"] as? [String: Any],
-            let paymentProduct320SpecificData =
-                PaymentProduct320SpecificData(json: paymentProduct320SpecificDataDictionary) {
-            self.paymentProduct320SpecificData = paymentProduct320SpecificData
-        }
-        if let paymentProduct863SpecificDataDictionary = json["paymentProduct863SpecificData"] as? [String: Any],
-            let paymentProduct863SpecificData =
-                PaymentProduct863SpecificData(json: paymentProduct863SpecificDataDictionary) {
-            self.paymentProduct863SpecificData = paymentProduct863SpecificData
-        }
-
-        self.identifier = "\(identifier)"
-        self.paymentMethod = paymentMethod
-        self.displayHints = displayHints
-        self.acquirerCountry = json["acquirerCountry"] as? String ?? ""
-
-        allowsTokenization = json["allowsTokenization"] as? Bool ?? false
-        allowsRecurring = json["allowsRecurring"] as? Bool ?? false
-        autoTokenized = json["autoTokenized"] as? Bool ?? false
-        allowsInstallments = json["allowsInstallments"] as? Bool ?? false
-        authenticationIndicator = json["authenticationIndicator"] as? AuthenticationIndicator
-
-        deviceFingerprintEnabled = json["deviceFingerprintEnabled"] as? Bool ?? false
-
-        minAmount = json["minAmount"] as? Int
-        maxAmount = json["maxAmount"] as? Int
-
-        mobileIntegrationLevel = json["mobileIntegrationLevel"] as? String
-        usesRedirectionTo3rdParty = json["usesRedirectionTo3rdParty"] as? Bool ?? false
-        paymentProductGroup = json["paymentProductGroup"] as? String
-        supportsMandates = json["supportsMandates"] as? Bool ?? false
-
-        if let input = json["accountsOnFile"] as? [[String: Any]] {
-            for accountInput in input {
-                if let account = AccountOnFile(json: accountInput) {
-                    accountsOnFile.accountsOnFile.append(account)
                 }
             }
         }

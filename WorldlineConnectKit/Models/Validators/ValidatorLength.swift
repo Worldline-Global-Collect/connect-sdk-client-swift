@@ -8,26 +8,13 @@
 
 import Foundation
 
-public class ValidatorLength: Validator, ValidationRule, ResponseObjectSerializable {
+public class ValidatorLength: Validator, ValidationRule {
     public var minLength = 0
     public var maxLength = 0
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public init(minLength: Int?, maxLength: Int?) {
+    internal init(minLength: Int?, maxLength: Int?) {
         self.minLength = minLength ?? 0
         self.maxLength = maxLength ?? 0
-
-        super.init(messageId: "length", validationType: .length)
-    }
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public required init(json: [String: Any]) {
-        if let input = json["maxLength"] as? Int {
-            maxLength = input
-        }
-        if let input = json["minLength"] as? Int {
-            minLength = input
-        }
 
         super.init(messageId: "length", validationType: .length)
     }
@@ -50,15 +37,6 @@ public class ValidatorLength: Validator, ValidationRule, ResponseObjectSerializa
         try? container.encode(maxLength, forKey: .maxLength)
 
         try? super.encode(to: encoder)
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
-    )
-    public override func validate(value: String, for request: PaymentRequest) {
-        _ = validate(value: value, for: nil)
     }
 
     public func validate(field fieldId: String, in request: PaymentRequest) -> Bool {

@@ -8,35 +8,9 @@
 
 import Foundation
 
-public class FormElement: ResponseObjectSerializable, Codable {
+public class FormElement: Codable {
     public var type: FormElementType
     public var valueMapping = [ValueMappingItem]()
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init?(json: [String: Any]) {
-        switch json["type"] as? String {
-        case "text"?:
-            type = .textType
-        case "currency"?:
-            type = .currencyType
-        case "list"?:
-            type = .listType
-        case "date"?:
-            type = .dateType
-        case "boolean"?:
-            type = .boolType
-        default:
-            return nil
-        }
-
-        if let input = json["valueMapping"] as? [[String: Any]] {
-            for valueInput in input {
-                if let item = ValueMappingItem(json: valueInput) {
-                    valueMapping.append(item)
-                }
-            }
-        }
-    }
 
     private enum CodingKeys: String, CodingKey {
         case type, valueMapping

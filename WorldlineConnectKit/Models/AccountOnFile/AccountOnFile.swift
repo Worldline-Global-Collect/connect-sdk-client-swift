@@ -8,41 +8,13 @@
 
 import Foundation
 
-public class AccountOnFile: ResponseObjectSerializable, Codable {
+public class AccountOnFile: Codable {
 
     public var identifier: String
     public var paymentProductIdentifier: String
     public var displayHints = AccountOnFileDisplayHints()
     public var attributes = AccountOnFileAttributes()
     public var stringFormatter = StringFormatter()
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public required init?(json: [String: Any]) {
-
-        guard let identifier = json["id"] as? Int,
-              let paymentProductId = json["paymentProductId"] as? Int else {
-            return nil
-        }
-        self.identifier = "\(identifier)"
-        self.paymentProductIdentifier = "\(paymentProductId)"
-        if let input = json["displayHints"] as? [String: Any] {
-            if let labelInputs = input["labelTemplate"] as? [[String: Any]] {
-                for labelInput in labelInputs {
-                    if let label = LabelTemplateItem(json: labelInput) {
-                        displayHints.labelTemplate.labelTemplateItems.append(label)
-                    }
-                }
-            }
-            displayHints.logo = input["logo"] as? String
-        }
-        if let input = json["attributes"] as? [[String: Any]] {
-            for attributeInput in input {
-                if let attribute = AccountOnFileAttribute(json: attributeInput) {
-                    attributes.attributes.append(attribute)
-                }
-            }
-        }
-    }
 
     private enum CodingKeys: String, CodingKey {
         case id, paymentProductId, displayHints, attributes

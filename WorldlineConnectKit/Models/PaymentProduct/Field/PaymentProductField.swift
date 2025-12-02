@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class PaymentProductField: ResponseObjectSerializable, Codable {
+public class PaymentProductField: Codable {
 
     public var identifier: String
     public var usedForLookup: Bool = false
@@ -16,65 +16,10 @@ public class PaymentProductField: ResponseObjectSerializable, Codable {
     public var displayHints: PaymentProductFieldDisplayHints?
     public var type: FieldType
 
-    @available(*, deprecated, message: "In a future release, this property will become private to this class.")
-    public var numberFormatter = NumberFormatter()
-    @available(*, deprecated, message: "In a future release, this property will become private to this class.")
-    public var numericStringCheck: NSRegularExpression
+    private var numberFormatter = NumberFormatter()
     private let stringFormatter = StringFormatter()
 
     public var errorMessageIds: [ValidationError] = []
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this property will be removed. Use errorMessageIds instead."
-    )
-    public var errors: [ValidationError] = []
-
-    // swiftlint:disable cyclomatic_complexity
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public required init?(json: [String: Any]) {
-        guard let identifier = json["id"] as? String,
-              let numericStringCheck = try? NSRegularExpression(pattern: "^\\d+$")
-        else {
-            return nil
-        }
-        self.identifier = identifier
-
-        numberFormatter.numberStyle = .decimal
-        self.numericStringCheck = numericStringCheck
-
-        if let hints = json["displayHints"] as? [String: Any] {
-            let displayHints = PaymentProductFieldDisplayHints(json: hints)
-            self.displayHints = displayHints
-        }
-
-        if let input = json["dataRestrictions"] as? [String: Any] {
-            dataRestrictions = DataRestrictions(json: input)
-        }
-
-        if let usedForLookup = json["usedForLookup"] as? Bool {
-            self.usedForLookup = usedForLookup
-        }
-
-        switch json["type"] as? String {
-        case "string"?:
-            type = .string
-        case "integer"?:
-            type = .integer
-        case "expirydate"?:
-            type = .expirationDate
-        case "numericstring"?:
-            type = .numericString
-        case "boolean"?:
-            type = .boolString
-        case "date"?:
-            type = .dateString
-        default:
-            Macros.DLog(message: "Type \(json["type"]!) in JSON fragment \(json) is invalid")
-                return nil
-        }
-    }
-    // swiftlint:enable cyclomatic_complexity
 
     private enum CodingKeys: String, CodingKey {
         case id, displayHints, dataRestrictions, usedForLookup, type
@@ -90,10 +35,6 @@ public class PaymentProductField: ResponseObjectSerializable, Codable {
         self.type = (try? container.decodeIfPresent(FieldType.self, forKey: .type)) ?? .string
 
         self.numberFormatter.numberStyle = .decimal
-        guard let numericStringCheck = try? NSRegularExpression(pattern: "^\\d+$") else {
-            throw SessionError.RuntimeError("Could not create regular expression")
-        }
-        self.numericStringCheck = numericStringCheck
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -105,20 +46,6 @@ public class PaymentProductField: ResponseObjectSerializable, Codable {
         try? container.encode(type, forKey: .type)
     }
 
-    // periphery:ignore
-    @available(
-        *,
-        deprecated,
-        message:
-            """
-            In a future release, this function will be removed.
-            Please use validateValue(value:) or validateValue(for:) instead.
-            """
-    )
-    public func validateValue(value: String, for request: PaymentRequest) -> [ValidationError] {
-        return validateValue(value: value)
-    }
-
     public func validateValue(for request: PaymentRequest) -> [ValidationError] {
         guard let value = request.getValue(forField: identifier) else {
             return validateValue(value: "")
@@ -128,7 +55,6 @@ public class PaymentProductField: ResponseObjectSerializable, Codable {
     }
 
     public func validateValue(value: String) -> [ValidationError] {
-        errors.removeAll()
         errorMessageIds.removeAll()
 
         if dataRestrictions.isRequired && value.isEqual("") {
@@ -138,14 +64,12 @@ public class PaymentProductField: ResponseObjectSerializable, Codable {
                     paymentProductFieldId: identifier,
                     rule: nil
                 )
-            errors.append(error)
             errorMessageIds.append(error)
         } else if dataRestrictions.isRequired ||
                     !value.isEqual("") ||
                     dataRestrictions.validators.variableRequiredness {
             for rule in dataRestrictions.validators.validators {
                 _ = rule.validate(value: value, for: identifier)
-                errors.append(contentsOf: rule.errors)
                 errorMessageIds.append(contentsOf: rule.errors)
             }
         }

@@ -12,12 +12,6 @@ public class PaymentRequest: Decodable {
 
     public var paymentProduct: PaymentProduct?
     public var errorMessageIds: [ValidationError] = []
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this property will be removed. Use errorMessageIds instead."
-    )
-    public var errors: [ValidationError] = []
     public var tokenize = false
 
     public var fieldValues = [String: String]()
@@ -40,7 +34,6 @@ public class PaymentRequest: Decodable {
 
         self.paymentProduct = try container.decodeIfPresent(PaymentProduct.self, forKey: .paymentProduct)
         self.errorMessageIds = try container.decodeIfPresent([ValidationError].self, forKey: .errorMessageIds) ?? []
-        self.errors = try container.decodeIfPresent([ValidationError].self, forKey: .errorMessageIds) ?? []
         self.tokenize = try container.decode(Bool.self, forKey: .tokenize)
         self.fieldValues =
             try container.decodeIfPresent([String: String].self, forKey: .fieldValues) ?? [String: String]()
@@ -135,11 +128,9 @@ public class PaymentRequest: Decodable {
     }
 
     public func validate() -> [ValidationError] {
-        errors.removeAll()
         errorMessageIds.removeAll()
 
         guard let paymentProduct = paymentProduct else {
-            errors.append(ValidationErrorInvalidPaymentProduct())
             errorMessageIds.append(ValidationErrorInvalidPaymentProduct())
             return errorMessageIds
         }
@@ -147,8 +138,7 @@ public class PaymentRequest: Decodable {
         for field in paymentProduct.fields.paymentProductFields where
           !isPartOfAccountOnFileAndNotModified(field: field.identifier) {
             if let fieldValue = unmaskedValue(forField: field.identifier) {
-                let fieldErrors = field.validateValue(value: fieldValue, for: self)
-                errors.append(contentsOf: fieldErrors)
+                let fieldErrors = field.validateValue(value: fieldValue)
                 errorMessageIds.append(contentsOf: fieldErrors)
             } else {
                 let error =
@@ -157,7 +147,6 @@ public class PaymentRequest: Decodable {
                         paymentProductFieldId: field.identifier,
                         rule: nil
                     )
-                errors.append(error)
                 errorMessageIds.append(error)
             }
         }

@@ -8,23 +8,11 @@
 
 import Foundation
 
-public class ValidatorFixedList: Validator, ValidationRule, ResponseObjectSerializable {
+public class ValidatorFixedList: Validator, ValidationRule {
     public var allowedValues: [String] = []
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public init(allowedValues: [String]) {
+    internal init(allowedValues: [String]) {
         self.allowedValues = allowedValues
-
-        super.init(messageId: "fixedList", validationType: .fixedList)
-    }
-
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    required public init(json: [String: Any]) {
-        if let input = json["allowedValues"] as? [String] {
-            for inputString in input {
-                allowedValues.append(inputString)
-            }
-        }
 
         super.init(messageId: "fixedList", validationType: .fixedList)
     }
@@ -47,15 +35,6 @@ public class ValidatorFixedList: Validator, ValidationRule, ResponseObjectSerial
         try? container.encode(allowedValues, forKey: .allowedValues)
 
         try? super.encode(to: encoder)
-    }
-
-    @available(
-        *,
-        deprecated,
-        message: "In a future release, this function will be removed. Please use validate(field:in:) instead."
-    )
-    public override func validate(value: String, for request: PaymentRequest) {
-        _ = validate(value: value, for: nil)
     }
 
     public func validate(field fieldId: String, in request: PaymentRequest) -> Bool {

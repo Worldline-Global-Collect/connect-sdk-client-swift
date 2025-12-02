@@ -13,8 +13,7 @@ public class Validator: Codable {
     public var messageId: String = ""
     public var validationType: ValidationType = .type
 
-    @available(*, deprecated, message: "In a future release, this initializer will become internal to the SDK.")
-    public init() {}
+    internal init() {}
 
     internal init(messageId: String, validationType: ValidationType) {
         self.messageId = messageId
@@ -31,11 +30,6 @@ public class Validator: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(messageId, forKey: .messageId)
         try container.encodeIfPresent(validationType, forKey: .validationType)
-    }
-
-    @available(*, deprecated, message: "In a future release, this function will be removed.")
-    public func validate(value: String, for: PaymentRequest) {
-        clearErrors()
     }
 
     internal func validate(value: String, for fieldId: String?) -> Bool {

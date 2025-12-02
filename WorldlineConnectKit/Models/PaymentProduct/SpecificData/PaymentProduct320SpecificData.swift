@@ -12,16 +12,6 @@ public class PaymentProduct320SpecificData: Codable {
     public var gateway: String = ""
     public var networks: [String] = []
 
-    @available(*, deprecated, message: "In a future release, this initializer will be removed.")
-    public required init?(json: [String: Any]) {
-        if let gateway = json["gateway"] as? String {
-            self.gateway = gateway
-        }
-        if let networks = json["networks"] as? [String] {
-            self.networks = networks
-        }
-    }
-
     private enum CodingKeys: String, CodingKey {
         case gateway, networks
     }

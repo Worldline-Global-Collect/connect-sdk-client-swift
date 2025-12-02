@@ -16,17 +16,27 @@ class PaymentItemsTestCase: XCTestCase {
 
     let host = "ams1.sandbox.api-worldline.com"
 
-    let session = StubSession(
-        clientSessionId: "client-session-id",
-        customerId: "customer-id",
-        baseURL: "https://ams1.sandbox.api-worldline.com/client/v1",
-        assetBaseURL: "https://ams1.sandbox.api-worldline.com/client/v1/assets",
-        appIdentifier: "",
-        loggingEnabled: false
+    let clientApi = StubClientApi(
+        sdkConfiguration: ConnectSDKConfiguration(
+            sessionConfiguration: SessionConfiguration(
+                clientSessionId: "client-session-id",
+                customerId: "customer-id",
+                clientApiUrl: "https://ams1.sandbox.api-worldline.com/client/v1",
+                assetUrl: "https://ams1.sandbox.api-worldline.com/client/v1/assets"
+            )
+        ),
+        paymentConfiguration: PaymentConfiguration(
+            paymentContext: PaymentContext(
+                amountOfMoney: PaymentAmountOfMoney(
+                    totalAmount: 3,
+                    currencyCode: "EUR"
+                ),
+                isRecurring: true,
+                countryCode: "NL"
+            ),
+            groupPaymentProducts: true
+        )
     )
-    let context = PaymentContext(amountOfMoney: PaymentAmountOfMoney(totalAmount: 3, currencyCode: "EUR"),
-                                 isRecurring: true,
-                                 countryCode: "NL")
 
     func testPaymentItems() {
         stub(condition: isHost("\(host)") && isPath("/client/v1/customer-id/products") && isMethodGET()) { _ in
@@ -146,7 +156,7 @@ class PaymentItemsTestCase: XCTestCase {
         }
 
         let expectation = self.expectation(description: "Response provided")
-        session.paymentItems(for: context, groupPaymentProducts: true, success: { (items) in
+        clientApi.paymentItems(success: { (items) in
 
             items.sort()
 
@@ -186,6 +196,9 @@ class PaymentItemsTestCase: XCTestCase {
             expectation.fulfill()
         }, failure: { (error) in
             XCTFail("Unexpected failure while loading Payment groups: \(error.localizedDescription)")
+            expectation.fulfill()
+        }, apiFailure: { (apiErrorResponse) in
+            XCTFail("Unexpected API failure while loading Payment groups: \(apiErrorResponse.errors)")
             expectation.fulfill()
         })
         waitForExpectations(timeout: 3) { error in
