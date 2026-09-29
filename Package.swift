@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 // Do not remove or alter the notices in this preamble.
 // Created for Worldline Global Collect on 16/09/2024.
 // Copyright © 2024 Worldline Global Collect. All rights reserved.
@@ -9,7 +9,7 @@ import PackageDescription
 let package = Package(
     name: "WorldlineConnectKit",
     platforms: [
-        .iOS(.v12)
+        .iOS(.v15)
     ],
     products: [
         .library(

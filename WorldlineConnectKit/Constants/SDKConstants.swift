@@ -14,7 +14,7 @@ public class SDKConstants {
     public static let kApplePayIdentifier = "302"
 
     public static let kApiVersion = "client/v1"
-    public static let kSDKIdentifier = "SwiftClientSDK/v7.0.0"
+    public static let kSDKIdentifier = "SwiftClientSDK/v8.0.0"
 
     // swiftlint:disable identifier_name
     public static func SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v: String) -> Bool {

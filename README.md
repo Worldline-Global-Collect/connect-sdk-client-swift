@@ -2,7 +2,7 @@ Worldline Connect Swift SDK
 =======================
 
 The Worldline Connect Swift SDK provides a convenient way to support a large number of payment methods inside your iOS app.
-It supports iOS 12.0 and up out-of-the-box.
+It supports iOS 15.0 and up out-of-the-box.
 The Swift SDK comes with an [UIKit example app](https://github.com/Worldline-Global-Collect/connect-sdk-client-swift-example) and a [SwiftUI example app](https://github.com/Worldline-Global-Collect/connect-sdk-client-swift-example-swiftui) that illustrate the use of the SDK and the services provided by Worldline Global Collect on the Worldline Global Collect platform.
 
 See the [Worldline Connect Developer Hub](https://docs.connect.worldline-solutions.com/documentation/sdk/mobile/swift/) for more information on how to use the SDK.
