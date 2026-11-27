@@ -26,7 +26,7 @@ let package = Package(
             name: "WorldlineConnectKit",
             dependencies: ["Alamofire", "CryptoSwift"],
             path: "WorldlineConnectKit",
-            resources: [.copy("WorldlineConnectKit.bundle"), .copy("PrivacyInfo.xcprivacy")]
+            resources: [.process("PrivacyInfo.xcprivacy")]
         ),
         .testTarget(
             name: "WorldlineConnectKitTests",

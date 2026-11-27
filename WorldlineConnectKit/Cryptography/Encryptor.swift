@@ -12,34 +12,6 @@ import Security
 
 class Encryptor {
 
-    func generateRSAKeyPair(withPublicTag publicTag: String, privateTag: String) {
-        let privateKeyAttr: [String: Any] = [
-            kSecAttrIsPermanent as String: true,
-            kSecAttrApplicationTag as String: privateTag
-        ]
-
-        let publicKeyAttr: [String: Any] = [
-            kSecAttrIsPermanent as String: true,
-            kSecAttrApplicationTag as String: publicTag
-        ]
-
-        let keyPairAttr: [String: Any] = [
-            kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
-            kSecAttrKeySizeInBits as String: 2048,
-            kSecPrivateKeyAttrs as String: privateKeyAttr,
-            kSecPublicKeyAttrs as String: publicKeyAttr
-        ]
-
-        var publicKey, privateKey: SecKey?
-
-        let genStatus = SecKeyGeneratePair(keyPairAttr as CFDictionary, &publicKey, &privateKey)
-
-        if genStatus != errSecSuccess {
-            Macros.DLog(message: "Error while generating pair of RSA keys: \(genStatus)")
-            // We cannot call SecCopyErrorMessageString on iOS
-        }
-    }
-
     func RSAKey(withTag tag: String) -> (SecKey?) {
         var keyRef: CFTypeRef?
 

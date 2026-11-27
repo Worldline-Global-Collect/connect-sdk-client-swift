@@ -12,13 +12,45 @@ import XCTest
 class EncryptorTestCase: XCTestCase {
     var encryptor = Encryptor()
     let publicTag = "test-public-tag"
-    let privateTag = "tets-private-tag"
+    let privateTag = "test-private-tag"
+
+    /**
+    In real use-cases, the Worldline Global Collect platform returns a public key during the encryption of the payment request in this SDK.
+    To simulate this behaviour in our tests, this function generates a key pair, so that other Encryptor functions can be tested.
+    */
+    private func generateRSAKeyPair(withPublicTag publicTag: String, privateTag: String) {
+        let privateKeyAttr: [String: Any] = [
+            kSecAttrIsPermanent as String: true,
+            kSecAttrApplicationTag as String: privateTag
+        ]
+
+        let publicKeyAttr: [String: Any] = [
+            kSecAttrIsPermanent as String: true,
+            kSecAttrApplicationTag as String: publicTag
+        ]
+
+        let keyPairAttr: [String: Any] = [
+            kSecAttrKeyType as String: kSecAttrKeyTypeRSA,
+            kSecAttrKeySizeInBits as String: 2048,
+            kSecPrivateKeyAttrs as String: privateKeyAttr,
+            kSecPublicKeyAttrs as String: publicKeyAttr
+        ]
+
+        var publicKey, privateKey: SecKey?
+
+        let genStatus = SecKeyGeneratePair(keyPairAttr as CFDictionary, &publicKey, &privateKey)
+
+        if genStatus != errSecSuccess {
+            Macros.DLog(message: "Error while generating pair of RSA keys: \(genStatus)")
+            // We cannot call SecCopyErrorMessageString on iOS
+        }
+    }
 
     func testGenerateRSAKeyPair() {
 
         encryptor.deleteRSAKey(withTag: publicTag)
         encryptor.deleteRSAKey(withTag: privateTag)
-        encryptor.generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
+        generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
 
         let publicKey: SecKey? = encryptor.RSAKey(withTag: publicTag)
         let privateKey: SecKey? = encryptor.RSAKey(withTag: privateTag)
@@ -75,7 +107,7 @@ class EncryptorTestCase: XCTestCase {
         encryptor.deleteRSAKey(withTag: publicTag)
         encryptor.deleteRSAKey(withTag: privateTag)
 
-        encryptor.generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
+        generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
 
         guard encryptor.RSAKey(withTag: publicTag) != nil,
               encryptor.RSAKey(withTag: privateTag) != nil else {
@@ -93,7 +125,7 @@ class EncryptorTestCase: XCTestCase {
         encryptor.deleteRSAKey(withTag: publicTag)
         encryptor.deleteRSAKey(withTag: privateTag)
 
-        encryptor.generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
+        generateRSAKeyPair(withPublicTag: publicTag, privateTag: privateTag)
 
         guard encryptor.RSAKey(withTag: publicTag) != nil,
               encryptor.RSAKey(withTag: privateTag) != nil else {
